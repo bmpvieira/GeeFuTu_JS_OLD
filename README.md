@@ -21,12 +21,22 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 * BioJS visualisation.
 * Tutorial.
 * Full test coverage.
-* Remote logging.
 * Synteny view.
 * Public API
-* Documentation.
+* Basic Documentation.
 * Cross OS/Browser support (Safari, Chrome, Firefox, Opera, IE9 and mobile browsers (Android, Chrome Mobile, iOS Safari).
 
 ### March 2015
 
 * Multiple Alignment Format (HAL?)
+* Remote logging.
+* Full Documentation.
+
+### Install
+
+> You currently have to download and compile Dalliance. Will have to host a build Dalliance repo with bowerfile.
+
+`npm install`
+`bower install`
+`gulp`
+

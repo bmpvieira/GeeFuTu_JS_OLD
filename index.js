@@ -11,6 +11,8 @@ var fs = require('fs');
 var flash = require('connect-flash');
 var app = express();
 
+var pjson = require('./package.json');
+
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -37,6 +39,9 @@ app.set('views', __dirname + '/views');
 
 // pass username to all responses (views)
 var appendLocalsToUseInViews = function (req, res, next) {
+
+    // gets current version
+    //res.locals.pjson = pjson;
 
     if (req.user != null && req.user.username != null) {
         res.locals.userName = req.user.username;
