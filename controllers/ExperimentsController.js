@@ -10,7 +10,7 @@ module.exports.controller = function (app) {
         Experiment.findAll(function (err, experiments) {
             if (err) return res.send(err);
 
-            async.each(experiments, function (experiment, callback) {
+            var getGenome = function (experiment, callback) {
                 Genome.findOne({_id: experiment.genome}, function (err, gen) {
                     if (err) {
                         console.log(err);
@@ -19,13 +19,17 @@ module.exports.controller = function (app) {
                     }
                     callback();
                 });
-
-            }, function (err) {
-                if(err){console.log(err)}
+            };
+            var returnResult = function () {
+                if (err) {
+                    console.log(err)
+                    return res.send(err);
+                }
                 res.render('experiments/index', {
                     experiments: experiments
                 });
-            });
+            };
+            async.each(experiments, getGenome, returnResult);
         });
     });
 
@@ -58,8 +62,7 @@ module.exports.controller = function (app) {
 
         experiment.save(function (err, r) {
             if (err) {
-                console.log(err);
-                res.send();
+                res.send(err);
             } else {
                 console.log('saved experiment');
             }
@@ -81,8 +84,7 @@ module.exports.controller = function (app) {
 
             feat.save(function (err, r) {
                 if (err) {
-                    console.log(err);
-                    return res.send();
+                    return res.send(err);
                 }
             });
 
@@ -96,19 +98,14 @@ module.exports.controller = function (app) {
         var id = req.param("id");
         var genome = null;
 
-        Experiment.find({_id: id}, function (err, exp) {
+        Experiment.findOne({_id: id}, function (err, experiment) {
             if (err) {
-                console.log(err);
+                res.send(err);
             } else {
-
-
-
-                var experiment = exp[0];
-                Genome.find({_id: experiment.genome}, function (err, gen) {
+                Genome.findOne({_id: experiment.genome}, function (err, genome) {
                     if (err) {
-                        console.log(err);
+                        return res.send(err);
                     } else {
-                        var genome = gen[0];
                         return res.render('experiments/show', {experiment: experiment, genome: genome});
                     }
                 });

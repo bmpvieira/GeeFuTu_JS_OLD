@@ -14,22 +14,28 @@ module.exports.controller = function (app) {
         Genome.findAll(function (err, genomes) {
             if (err) return res.send(err);
 
-            async.each(genomes, function (genome, callback) {
+            var getOrganism = function (genome, callback) {
                 Organism.findOne({_id: genome.organism}, function (err, org) {
                     if (err) {
-                        console.log(err);
+                        return res.send(err);
                     } else {
                         genome.organism = org.localName;
                     }
                     callback();
                 });
+            };
 
-            }, function (err) {
-                if(err){console.log(err)}
+            var returnResult = function () {
+                if (err) {
+                    return res.send(err);
+                }
                 res.render('genomes/index', {
                     genomes: genomes
                 });
-            });
+            };
+
+
+            async.each(genomes, getOrganism, returnResult);
         });
     });
     /**
@@ -76,10 +82,7 @@ module.exports.controller = function (app) {
                     });
                     reference.save(function (err, r) {
                         if (err) {
-                            console.log(err);
-                            console.log('data used was:');
-                            console.log(ref);
-                            console.log(gen._id);
+                            return res.send(err);
                         }
                     });
                 }, function () {
@@ -114,13 +117,13 @@ module.exports.controller = function (app) {
                     return console.log('error', err);
                 } else {
                     //console.log(genome);
-                    console.log('FOUND:',genome.length);
+                    console.log('FOUND:', genome.length);
                     console.log(genome);
-                    if(genome && genome.length > 0) {
+                    if (genome && genome.length > 0) {
                         var g = genome[0];
                         var seq = g.sequence.substring(min, max);
                         console.log(seq);
-                    return res.send(seq);
+                        return res.send(seq);
                     } else {
                         return res.send();
                     }
