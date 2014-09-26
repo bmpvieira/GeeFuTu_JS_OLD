@@ -22,7 +22,7 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 * Tutorial.
 * Full test coverage.
 * Synteny view.
-* text notes for experiments, features, genomes, etc.
+* Text notes for experiments, features, genomes, etc.
 * Public API.
 * Basic Documentation.
 * Cross OS/Browser support (Safari, Chrome, Firefox, Opera, IE9 and mobile browsers (Android, Chrome Mobile, iOS Safari).
