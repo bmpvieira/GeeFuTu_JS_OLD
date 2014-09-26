@@ -124,8 +124,8 @@ GeeFuTuFeatureSource.prototype.fetch = function (chr, min, max, scale, types, po
 
                     var f = new DASFeature();
                     f.segment = chr;
-                    f.min = j['start'] | 0;
-                    f.max = j['end'] | 0;
+                    f.min = j.start | 0;
+                    f.max = j.end | 0;
                     f.id = j._id;
                     f.type = j.type;
 

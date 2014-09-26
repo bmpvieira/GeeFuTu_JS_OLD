@@ -35,11 +35,10 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 
 ### Install
 
-> You currently have to download and compile Dalliance. Will have to host a build Dalliance repo with bowerfile.
-
 `npm install`    
 `bower install`    
 `gulp`    
+`cd public/components/dalliance && gulp`    
 
 ### Contributors
 
