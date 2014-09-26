@@ -45,4 +45,4 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 
 Martin Page <wookoouk@gmail.com>    
 Shyam Rallapalli <Ghanasyam.Rallapalli@tsl.ac.uk>    
-Dan Maclean <dan.maclean@tsl.ac.uk>    
+Dan Maclean <Dan.MacLean@tsl.ac.uk>    
