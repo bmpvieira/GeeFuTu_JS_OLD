@@ -1,5 +1,4 @@
-var mongoose = require('mongoose')
-    , Schema = mongoose.Schema;
+var mongoose = require('mongoose');
 
 var experimentSchema = mongoose.Schema({
     name: { type: String, required: true},
@@ -15,21 +14,7 @@ var experimentSchema = mongoose.Schema({
 experimentSchema.statics.findAll = function search(cb) {
     Experiment.find({}).exec(cb);
 };
-//
-//experimentSchema.virtual('processedUsers').get(function(){
-//
-//}).set(function(progessedUsers){
-//    this.set('processedUsers', processedUsers)
-//});
-//
-//experimentSchema.methods.getUsers = function (cb) {
-//    var User = require('./user');
-////    console.log('looking for: ' + this.users);
-//    User.find({'_id': {
-//        $in: this.users
-//    }}).exec(cb);
-//};
-//
+
 experimentSchema.pre('save', function (next) {
     if (!this.createdAt) {
         this.createdAt = new Date;

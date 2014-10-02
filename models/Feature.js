@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'), Schema = mongoose.Schema;
+var mongoose = require('mongoose')
 
 var featureSchema = mongoose.Schema({
     seqid: {type: String, required: true},

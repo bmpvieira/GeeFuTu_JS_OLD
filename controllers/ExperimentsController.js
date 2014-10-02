@@ -22,7 +22,7 @@ module.exports.controller = function (app) {
             };
             var returnResult = function () {
                 if (err) {
-                    console.log(err)
+                    console.log(err);
                     return res.send(err);
                 }
                 res.render('experiments/index', {
@@ -60,7 +60,7 @@ module.exports.controller = function (app) {
             findParents: findParents
         });
 
-        experiment.save(function (err, r) {
+        experiment.save(function (err) {
             if (err) {
                 res.send(err);
             } else {
@@ -87,9 +87,6 @@ module.exports.controller = function (app) {
                     return res.send(err);
                 }
             });
-
-        }, function () {
-            //console.log('finished');
         });
         return res.redirect('/experiments');
     });
@@ -113,17 +110,23 @@ module.exports.controller = function (app) {
         });
     });
 
-    app.get('/api/experiment/:id', function (req, res) {
+    app.get('/api/experiments', function (req, res) {
+        Experiment.findAll(function (err, experiments) {
+            if (err) {
+                res.send('error');
+            }
+            res.send(experiments);
+        });
+    });
 
+
+    app.get('/api/experiments/:id', function (req, res) {
         var id = req.param("id");
         var chr = req.query.chr;
         var min = req.query.min;
         var max = req.query.max;
-
         Feature.find(
-            {
-                experiment: id, seqid: chr, start: {$gt: min}, end: {$lt: max}
-            },
+            {experiment: id, seqid: chr, start: {$gt: min}, end: {$lt: max}},
             function (err, features) {
                 if (err) {
                     console.log('error', err);

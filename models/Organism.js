@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'), Schema = mongoose.Schema;
+var mongoose = require('mongoose')
 
 var organismSchema = mongoose.Schema({
     localName: {type: String, required: true},
@@ -16,21 +16,7 @@ organismSchema.statics.findAll = function(cb) {
     //err, findings
     Organism.find({}).exec(cb);
 };
-//
-//organismSchema.virtual('processedUsers').get(function(){
-//
-//}).set(function(progessedUsers){
-//    this.set('processedUsers', processedUsers)
-//});
-//
-//organismSchema.methods.getUsers = function (cb) {
-//    var User = require('./user');
-////    console.log('looking for: ' + this.users);
-//    User.find({'_id': {
-//        $in: this.users
-//    }}).exec(cb);
-//};
-//
+
 organismSchema.pre('save', function (next) {
     if (!this.createdAt) {
         this.createdAt = new Date;

@@ -38,9 +38,7 @@ module.exports.controller = function (app) {
             async.each(genomes, getOrganism, returnResult);
         });
     });
-    /**
-     *
-     */
+
     app.get('/genomes/new', function (req, res) {
         Organism.findAll(function (err, orgs) {
             if (err) return res.send(err);
@@ -50,9 +48,7 @@ module.exports.controller = function (app) {
         });
 
     });
-    /**
-     *
-     */
+
     app.post('/genomes/add', function (req, res) {
 
         //order: create genome, get its id, add all refs from file, link them to genome by id

@@ -1,9 +1,6 @@
 var Organism = require('../models/Organism');
 module.exports.controller = function (app) {
 
-    /**
-     *
-     */
     app.get('/organisms', function (req, res) {
         Organism.findAll(function (err, orgs) {
             if (err) return res.send(err);
@@ -13,16 +10,10 @@ module.exports.controller = function (app) {
         });
     });
 
-    /**
-     *
-     */
     app.get('/organisms/new', function (req, res) {
         return res.render('organisms/new');
     });
 
-    /**
-     *
-     */
     app.post('/organisms/add', function (req, res) {
 
         var localName = req.body.localname;
@@ -49,9 +40,6 @@ module.exports.controller = function (app) {
 
     });
 
-    /**
-     *
-     */
     app.get('/organisms/show', function (req, res) {
         return res.render('organisms/show');
     });

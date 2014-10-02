@@ -7,7 +7,7 @@
     <div id='svgHolder'>Dalliance genome browser goes here. Unless you have an ancient web browser or something.</div>
 
 </div>
-<script src="/dalliance/build/dalliance-all.js"></script>
+<script src="/components/dalliance/build/dalliance-all.js"></script>
 <script src="/js/dallianceBackend.js"></script>
 <script language="javascript">
     var b = new Browser({
@@ -30,6 +30,9 @@
                 uri: '/api/genome/<%- genome._id %>',
                 tier_type: 'geefutuGenome'
             },
+
+//            {name: "Ashwellthorpe2 (AT2) RNA-seq vs KW1",
+//                bamURI: "https://geefu.oadb.tsl.ac.uk/bam/ashwellthorpe2_vs_tgac1-pe.sorted.bam"},
 
             {
                 name: 'Experiment',
