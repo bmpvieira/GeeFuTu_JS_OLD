@@ -25,7 +25,7 @@
             <a class="navbar-brand" href="/">GeeFuTu</a>
         </div>
         <div class="collapse navbar-collapse">
-         <%if(locals.userName){ %>
+            <% if(locals.userName){ %>
             <ul class="nav navbar-nav">
                 <li><a href="/organisms">Organisms</a></li>
                 <li><a href="/genomes">Genome Builds</a></li>
@@ -33,14 +33,16 @@
                 <li><a href="/features">Features</a></li>
                 <li><a href="/tools">Tools</a></li>
             </ul>
-         <% } %>
+            <% } %>
             <ul class="nav navbar-nav navbar-right">
-                <%if(locals.userName){ %>
+                <% if(locals.userName){ %>
                 <li><a href="/user/<%- locals.userName %>"><%- locals.userName %></a></li>
-               <% } else { %>
+                <% } else { %>
+                <li><a href="/signup">Sign Up</a></li>
                 <li><a href="/signin">Sign In</a></li>
                 <% } %>
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
+        <!--/.nav-collapse -->
     </div>
 </div>
