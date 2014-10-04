@@ -38,7 +38,7 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 `npm install`    
 `bower install`    
 `gulp`    
-`cd public/components/dalliance && gulp`    
+`cd public/components/dalliance && npm install && gulp`    
 
 ### Contributors
 
