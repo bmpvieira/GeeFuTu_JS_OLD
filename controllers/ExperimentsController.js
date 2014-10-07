@@ -3,17 +3,21 @@ var Genome = require('../models/Genome');
 var GFF = require('../lib/gff3');
 var Feature = require('../models/Feature');
 var async = require('async');
+var Auth = require('./AuthController');
 
 module.exports.controller = function (app) {
 
-    app.get('/experiments', function (req, res) {
+    app.get('/:username/:organism/experiments', function (req, res) {
         Experiment.findAll(function (err, experiments) {
-            if (err) return res.send(err);
+            if (err) {
+                return res.render('error', {message: err});
+            }
 
             var getGenome = function (experiment, callback) {
                 Genome.findOne({_id: experiment.genome}, function (err, gen) {
                     if (err) {
-                        console.log(err);
+                        //console.log(err);
+                        return res.render('error', {message: err});
                     } else {
                         experiment.genome = gen.buildVersion;
                     }
@@ -22,8 +26,7 @@ module.exports.controller = function (app) {
             };
             var returnResult = function () {
                 if (err) {
-                    console.log(err);
-                    return res.send(err);
+                    return res.render('error', {message: err});
                 }
                 res.render('experiments/index', {
                     experiments: experiments
@@ -33,16 +36,18 @@ module.exports.controller = function (app) {
         });
     });
 
-    app.get('/experiments/new', function (req, res) {
+    app.get('/:username/:organism/experiments/add', Auth.isAuthenticated, function (req, res) {
         Genome.findAll(function (err, gens) {
-            if (err) return res.send(err);
+            if (err) {
+                return res.render('error', {message: err});
+            }
             return res.render('experiments/new', {
                 genomes: gens
             });
         });
     });
 
-    app.post('/experiments/add', function (req, res) {
+    app.post('/:username/:organism/experiments/add', Auth.isAuthenticated, function (req, res) {
 
         var name = req.body.name;
         var description = req.body.description;
@@ -62,7 +67,7 @@ module.exports.controller = function (app) {
 
         experiment.save(function (err) {
             if (err) {
-                res.send(err);
+                return res.render('error', {message: err});
             } else {
                 console.log('saved experiment');
             }
@@ -84,14 +89,14 @@ module.exports.controller = function (app) {
 
             feat.save(function (err, r) {
                 if (err) {
-                    return res.send(err);
+                    return res.render('error', {message: err});
                 }
             });
         });
         return res.redirect('/experiments');
     });
 
-    app.get('/experiments/:id', function (req, res) {
+    app.get('/:username/:organism/experiments/:id', function (req, res) {
         var id = req.param("id");
         var genome = null;
 
@@ -101,7 +106,7 @@ module.exports.controller = function (app) {
             } else {
                 Genome.findOne({_id: experiment.genome}, function (err, genome) {
                     if (err) {
-                        return res.send(err);
+                        return res.render('error', {message: err});
                     } else {
                         return res.render('experiments/show', {experiment: experiment, genome: genome});
                     }
@@ -110,30 +115,30 @@ module.exports.controller = function (app) {
         });
     });
 
-    app.get('/api/experiments', function (req, res) {
-        Experiment.findAll(function (err, experiments) {
-            if (err) {
-                res.send('error');
-            }
-            res.send(experiments);
-        });
-    });
+    //app.get('/api/experiments', function (req, res) {
+    //    Experiment.findAll(function (err, experiments) {
+    //        if (err) {
+    //            res.send('error');
+    //        }
+    //        res.send(experiments);
+    //    });
+    //});
 
 
-    app.get('/api/experiments/:id', function (req, res) {
-        var id = req.param("id");
-        var chr = req.query.chr;
-        var min = req.query.min;
-        var max = req.query.max;
-        Feature.find(
-            {experiment: id, seqid: chr, start: {$gt: min}, end: {$lt: max}},
-            function (err, features) {
-                if (err) {
-                    console.log('error', err);
-                } else {
-                    return res.send(features);
-                }
-            });
-    });
+    //app.get('/api/experiments/:id', function (req, res) {
+    //    var id = req.param("id");
+    //    var chr = req.query.chr;
+    //    var min = req.query.min;
+    //    var max = req.query.max;
+    //    Feature.find(
+    //        {experiment: id, seqid: chr, start: {$gt: min}, end: {$lt: max}},
+    //        function (err, features) {
+    //            if (err) {
+    //                console.log('error', err);
+    //            } else {
+    //                return res.send(features);
+    //            }
+    //        });
+    //});
 
 };

@@ -22,9 +22,7 @@ var setupMiddleware = function () {
         //session secret - TODO: CHANGE THIS TO SOMETHING ELSE!
         secret: 'changemenow',
         cookie: {
-            path: '/',
-            httpOnly: false,
-            maxAge: 24 * 60 * 60 * 1000
+            expires: false
         }
     }));
 
@@ -44,18 +42,57 @@ var setupMiddleware = function () {
         next(null, req, res);
     };
     app.use(appendLocalsToUseInViews);
+
+    var flashes = function (req, res, next) {
+        var info = req.flash('info');
+        var error = req.flash('error');
+
+        if (info.length > 0) {
+            res.locals.info = info;
+        }
+        if (error.length > 0) {
+            res.locals.error = error;
+        }
+        next(null, req, res);
+    };
+    app.use(flashes);
 };
 
 var loadRoutes = function () {
-    fs.readdirSync('./controllers').forEach(function (file) {
-        if (file.substr(-3) == '.js') {
-            route = require('./controllers/' + file);
-            route.controller(app);
+
+    app.get('/', function (req, res) {
+        if (req.user && req.user.username) {
+            //dash
+            res.render('dash/index');
+        } else {
+            //public index
+            res.render('index');
         }
     });
-    app.get('/', function (req, res) {
-        res.render('index');
+
+    app.get('/us', function (req, res) {
+        res.render('us');
     });
+
+    var AuthController = require('./controllers/AuthController');
+    AuthController.controller(app);
+
+    var ExperimentsController = require('./controllers/ExperimentsController');
+    ExperimentsController.controller(app);
+
+    var FeaturesController = require('./controllers/FeaturesController');
+    FeaturesController.controller(app);
+
+    var GenomesController = require('./controllers/GenomesController');
+    GenomesController.controller(app);
+
+    //TODO keep this second from last
+    var UserController = require('./controllers/UserController');
+    UserController.controller(app);
+
+    //TODO keep this last
+    var OrganismsController = require('./controllers/OrganismsController');
+    OrganismsController.controller(app);
 };
 
 var mongoConnection = function () {

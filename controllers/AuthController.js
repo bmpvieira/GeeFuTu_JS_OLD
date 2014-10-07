@@ -5,12 +5,22 @@ var LocalStrategy = require('passport-local').Strategy;
 
 module.exports.controller = function (app) {
 
-    passport.serializeUser(function(user, done) {
+
+    this.isAuthenticated = function (req, res, next) {
+
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect('/signin');
+    };
+
+
+    passport.serializeUser(function (user, done) {
         done(null, user._id);
     });
-    passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user){
-            if(!err) done(null, user);
+    passport.deserializeUser(function (id, done) {
+        User.findById(id, function (err, user) {
+            if (!err) done(null, user);
             else done(err, null)
         })
     });
@@ -39,10 +49,10 @@ module.exports.controller = function (app) {
         }
     ));
 
-
     app.get('/signin', function (req, res) {
         return res.render('auth/signin');
     });
+
     app.post('/signin',
         passport.authenticate('local', {
             successRedirect: '/',
@@ -52,9 +62,22 @@ module.exports.controller = function (app) {
     );
 
     app.get('/signup', function (req, res) {
-        return res.render('auth/signup');
+
+        var username = '';
+        var email = '';
+        var password = '';
+
+        return res.render('auth/signup', {username: username, email: email, password: password});
     });
+
     app.post('/signup', function (req, res) {
+        var username = req.body.username;
+        var email = req.body.email;
+        var password = req.body.password;
+        return res.render('auth/signup', {username: username, email: email, password: password});
+    });
+
+    app.post('/join', function (req, res) {
 
         var username = req.body.username;
         var email = req.body.email;
@@ -71,20 +94,17 @@ module.exports.controller = function (app) {
 
             user.save(function (err, r) {
                 if (err) {
-                    console.log(err);
-                    res.send(err);
-                } else {
-                    req.session.userName = username;
-                    return res.redirect('/');
+                    return res.render('error', {message: err});
                 }
+                return res.redirect('/signin');
             });
         } else {
-            res.send('password + confirmpassword do not match');
+            return res.render('error', {message: 'password + confirm password do not match'});
         }
     });
 
     app.get('/signout', function (req, res) {
-        req.session.userName = null;
+        req.logout();
         res.redirect('/');
     });
 

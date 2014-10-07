@@ -3,6 +3,7 @@ var Organism = require('../models/Organism');
 var Reference = require('../models/Reference');
 var Fasta = require('../lib/fasta');
 var async = require('async');
+var Auth = require('./AuthController');
 
 /**
  *
@@ -10,14 +11,16 @@ var async = require('async');
  */
 module.exports.controller = function (app) {
 
-    app.get('/genomes', function (req, res) {
+    app.get('/:username/:organism/genomes', function (req, res) {
         Genome.findAll(function (err, genomes) {
-            if (err) return res.send(err);
+            if (err) {
+                return res.render('error', {message: err});
+            }
 
             var getOrganism = function (genome, callback) {
                 Organism.findOne({_id: genome.organism}, function (err, org) {
                     if (err) {
-                        return res.send(err);
+                        return res.render('error', {message: err});
                     } else {
                         genome.organism = org.localName;
                     }
@@ -27,7 +30,7 @@ module.exports.controller = function (app) {
 
             var returnResult = function () {
                 if (err) {
-                    return res.send(err);
+                    return res.render('error', {message: err});
                 }
                 res.render('genomes/index', {
                     genomes: genomes
@@ -39,9 +42,11 @@ module.exports.controller = function (app) {
         });
     });
 
-    app.get('/genomes/new', function (req, res) {
+    app.get('/:username/:organism/genomes/add', Auth.isAuthenticated, function (req, res) {
         Organism.findAll(function (err, orgs) {
-            if (err) return res.send(err);
+            if (err) {
+                return res.render('error', {message: err});
+            }
             return res.render('genomes/new', {
                 organisms: orgs
             });
@@ -49,7 +54,7 @@ module.exports.controller = function (app) {
 
     });
 
-    app.post('/genomes/add', function (req, res) {
+    app.post('/:username/:organism/genomes/add', Auth.isAuthenticated, function (req, res) {
 
         //order: create genome, get its id, add all refs from file, link them to genome by id
 
@@ -70,7 +75,9 @@ module.exports.controller = function (app) {
             });
 
             genome.save(function (err, gen) {
-                if (err) return res.send(err);
+                if (err) {
+                    return res.render('error',{message: err});
+                }
 
                 Fasta.read(file.path, function (ref) {
                     var reference = new Reference({
@@ -78,7 +85,7 @@ module.exports.controller = function (app) {
                     });
                     reference.save(function (err, r) {
                         if (err) {
-                            return res.send(err);
+                            return res.render('error',{message: err});
                         }
                     });
                 }, function () {
@@ -92,43 +99,43 @@ module.exports.controller = function (app) {
         }
     });
 
-    app.get('/genomes/show', function (req, res) {
+    app.get('/:username/:organism/genomes/show', function (req, res) {
         return res.render('genomes/show')
     });
 
-    app.get('/api/genome/:id', function (req, res) {
-
-        var id = req.param("id");
-        var chr = req.query.chr;
-        var min = req.query.min;
-        var max = req.query.max;
-
-        Reference.find(
-            {
-                genome: id, name: chr
-                //, start: {$gt: min}, end: {$lt: max }
-            },
-            function (err, genome) {
-                if (err) {
-                    return console.log('error', err);
-                } else {
-                    //console.log(genome);
-                    console.log('FOUND:', genome.length);
-                    console.log(genome);
-                    if (genome && genome.length > 0) {
-                        var g = genome[0];
-                        var seq = g.sequence.substring(min, max);
-                        console.log(seq);
-                        return res.send(seq);
-                    } else {
-                        return res.send();
-                    }
-                }
-            });
-
-
-        console.log('get reference track');
-        //res.send();
-    });
+    //app.get('/api/genome/:id', function (req, res) {
+    //
+    //    var id = req.param("id");
+    //    var chr = req.query.chr;
+    //    var min = req.query.min;
+    //    var max = req.query.max;
+    //
+    //    Reference.find(
+    //        {
+    //            genome: id, name: chr
+    //            //, start: {$gt: min}, end: {$lt: max }
+    //        },
+    //        function (err, genome) {
+    //            if (err) {
+    //                return console.log('error', err);
+    //            } else {
+    //                //console.log(genome);
+    //                console.log('FOUND:', genome.length);
+    //                console.log(genome);
+    //                if (genome && genome.length > 0) {
+    //                    var g = genome[0];
+    //                    var seq = g.sequence.substring(min, max);
+    //                    console.log(seq);
+    //                    return res.send(seq);
+    //                } else {
+    //                    return res.send();
+    //                }
+    //            }
+    //        });
+    //
+    //
+    //    console.log('get reference track');
+    //    //res.send();
+    //});
 
 };

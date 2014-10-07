@@ -1,17 +1,31 @@
 <% include head %>
 
 <div class="masthead">
-    <h1>GeeFuTu</h1>
+    <h1>GeeFu</h1>
 </div>
-<div class="container">
-    <div class="row mt centered">
-        <div class="col-sm-8 col-sm-offset-2">
-            <h1>Sharing Data Is Cool<br><a href="http://i.imgur.com/G5NdxmZ.gif">Trust Me, I'm a Hipster.</a></h1>
-        </div>
-    </div>
-    <!-- /row -->
 
-    <div class="row mt centered">
+<div class="row mb centered" id="frontPageSignUp">
+    <div class="col-sm-8">
+        <h1>Sharing Data Is Cool<br><a href="http://i.imgur.com/G5NdxmZ.gif">Trust Me, I'm a Hipster.</a></h1>
+        <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever.</h4>
+    </div>
+    <div class="col-sm-4">
+        <form role="form" action="/signup" method="post">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Pick a username"
+                   required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Create a password"
+                   required>
+            <button type="submit" class="btn btn-success form-control">Sign up for GeeFu</button>
+        </form>
+    </div>
+</div>
+<!-- /row -->
+
+<div class="container">
+
+    <div class="row mt mb centered">
         <div class="col-sm-4">
             <img src="/img/icons/Beer.png" width="180" alt="">
             <h4>GeeFuTu Is Free</h4>
@@ -42,74 +56,6 @@
         <!--/col-sm-4 -->
     </div>
     <!-- /row -->
-    <hr>
-</div>
-
-
-<div class="container">
-    <div class="row mt centered">
-        <div class="col-sm-8 col-sm-offset-2">
-            <h1>Our Awesome Gang.<br>Team MacLean.</h1>
-        </div>
-    </div>
-    <!-- /row -->
-
-    <div class="row mt centered">
-        <div class="col-sm-3">
-            <img class="img-circle" src="/img/people/dan.png" width="140" alt="">
-            <h4>Dan Maclean</h4>
-
-            <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the-->
-            <!--industry's standard dummy text ever.</p>-->
-
-            <p><i class="glyphicon glyphicon-send"></i> <i class="glyphicon glyphicon-phone"></i> <i
-                        class="glyphicon glyphicon-globe"></i></p>
-        </div>
-        <!--/col-sm-4 -->
-
-        <div class="col-sm-3">
-            <img class="img-circle" src="/img/people/carlos_lugo.png" width="140" alt="">
-            <h4>Dr Carlos Lugo</h4>
-
-            <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the-->
-            <!--industry's standard dummy text ever.</p>-->
-
-            <p><i class="glyphicon glyphicon-send"></i> <i class="glyphicon glyphicon-phone"></i> <i
-                        class="glyphicon glyphicon-globe"></i></p>
-        </div>
-        <!--/col-sm-4 -->
-        <div class="col-sm-3">
-            <img class="img-circle" src="/img/people/shyam_rallapalli.png" width="140" alt="">
-            <h4>Dr Ghanasyam Rallapalli</h4>
-
-            <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the-->
-            <!--industry's standard dummy text ever.</p>-->
-
-            <p><i class="glyphicon glyphicon-send"></i> <i class="glyphicon glyphicon-phone"></i> <i
-                        class="glyphicon glyphicon-globe"></i></p>
-        </div>
-        <!--/col-sm-4 -->
-
-        <div class="col-sm-3">
-            <img class="img-circle" src="/img/people/martin_page.png" width="140" alt="">
-            <h4>Mr Martin Page</h4>
-
-            <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the-->
-            <!--industry's standard dummy text ever.</p>-->
-
-            <p><i class="glyphicon glyphicon-send"></i> <i class="glyphicon glyphicon-phone"></i> <i
-                        class="glyphicon glyphicon-globe"></i></p>
-        </div>
-        <!--/col-sm-4 -->
-
-    </div>
-    <!-- /row -->
-</div>
-
-<div class="container">
-    <hr>
-    <p class="centered">Created by <a href="http://twitter.com/biodevops">Martin Page</a> of <a
-                href="http://www.danmaclean.info">Team Maclean</a></p>
 </div>
 
 <% include foot %>

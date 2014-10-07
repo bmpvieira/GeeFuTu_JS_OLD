@@ -21,6 +21,10 @@ userSchema.pre('save', function (next) {
     });
 });
 
+userSchema.statics.getUserByUsername = function (username, cb) {
+    User.findOne({username: username}).exec(cb);
+};
+
 // Password verification
 userSchema.methods.comparePassword = function (candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {

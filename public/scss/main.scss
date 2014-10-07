@@ -13,7 +13,7 @@ body {
   margin-top: 50px;
   background-color: #f2f2f2;
   font-family: 'Lato', sans-serif;
-  font-weight: 300;
+  font-weight: 400; //300
   font-size: 16px;
   color: #555;
 
@@ -153,15 +153,30 @@ hr {
 
 .mt {
   margin-top: 40px;
+}
+
+.mb {
   margin-bottom: 40px;
 }
 
 .pt {
   padding-top: 20px;
+}
+
+.pb {
   padding-bottom: 20px;
 }
 
 i {
   margin: 8px;
   color: #3498db;
+}
+
+#frontPageSignUp {
+padding: 20px;
+    background-color: #ffffff;
+}
+
+#frontPageSignUp .form-control{
+    margin-top: 10px;
 }

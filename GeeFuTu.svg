@@ -13,7 +13,7 @@
    height="1052.3622047"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="GeeFuTu.svg">
   <defs
      id="defs4" />
@@ -24,18 +24,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.9899495"
-     inkscape:cx="523.98903"
-     inkscape:cy="621.26176"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="1116.5243"
+     inkscape:cy="283.50246"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
-     showgrid="false"
+     showgrid="true"
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-height="1079"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
@@ -826,5 +826,210 @@
          d="m 210.16759,974.98144 65,-35 40,20 0,74.99996 z"
          style="fill:#000000;fill-opacity:0.23529412;stroke:none;display:inline" />
     </g>
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       style="fill:#e74c3c;fill-opacity:1;stroke:none;display:inline"
+       d="m 1020,432.3622 -105,-60.00003 0,-119.99999 105,-60 105,60 0,119.99999 z"
+       id="path3084"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:connector-curvature="0"
+       id="path3088"
+       d="m 1020,357.36218 40,-20 65,35 -105,60.00002 z"
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:connector-curvature="0"
+       id="path3094"
+       d="m 1060,287.36217 0,50.00001 -40,-25 z"
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:connector-curvature="0"
+       id="path3098"
+       d="m 915,252.36218 105,-60 0,75 -40,19.99999 z"
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:connector-curvature="0"
+       id="path3100"
+       d="m 980,287.36217 0,50.00001 -65,35 0,-120 z"
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:connector-curvature="0"
+       id="path3102"
+       d="m 915,372.36218 65,-35 40,20 0,75.00002 z"
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline" />
+    <path
+       sodipodi:nodetypes="ccccccc"
+       inkscape:connector-curvature="0"
+       id="path3112"
+       d="m 1230,432.3622 -105,-60.00003 0,-119.99999 105,-60 105,60 0,119.99999 z"
+       style="fill:#e74c3c;fill-opacity:1;stroke:none;display:inline"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <path
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline"
+       d="m 1125,252.36218 105,-60 0,75 -40,19.99999 z"
+       id="path3126"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <path
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline"
+       d="m 1190,287.36217 0,50.00001 -65,35 0,-120 z"
+       id="path3128"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <path
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline"
+       d="m 1125,372.36218 65,-35 40,20 0,75.00002 z"
+       id="path3130"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <path
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline"
+       d="m 1230,312.36218 -40,25 0,-50.00001 z"
+       id="path3134"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       style="fill:#e74c3c;fill-opacity:1;stroke:none;display:inline"
+       d="m 1440,432.3622 -105,-60.00003 0,-119.99999 105,-60 105,60 0,119.99999 z"
+       id="path3140"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:connector-curvature="0"
+       id="path3154"
+       d="m 1335,252.36218 105,-60 0,75 -40,19.99999 z"
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:connector-curvature="0"
+       id="path3156"
+       d="m 1400,287.36217 0,50.00001 -65,35 0,-120 z"
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:connector-curvature="0"
+       id="path3158"
+       d="m 1335,372.36218 65,-35 40,20 0,75.00002 z"
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:connector-curvature="0"
+       id="path3162"
+       d="m 1440,312.36218 -40,25 0,-50.00001 z"
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       style="fill:#e74c3c;fill-opacity:1;stroke:none;display:inline"
+       d="m 1650,432.3622 -105,-60.00003 0,-119.99999 105,-60 105,60 0,119.99999 z"
+       id="path3168"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:connector-curvature="0"
+       id="path3182"
+       d="m 1545,252.36218 105,-60 0,75 -40,19.99999 z"
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:connector-curvature="0"
+       id="path3184"
+       d="m 1610,287.36217 0,50.00001 -65,35 0,-120 z"
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline" />
+    <path
+       inkscape:export-ydpi="300"
+       inkscape:export-xdpi="300"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:connector-curvature="0"
+       id="path3190"
+       d="m 1650,312.36218 -40,25 0,-50.00001 z"
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline" />
+    <path
+       sodipodi:nodetypes="ccccccc"
+       inkscape:connector-curvature="0"
+       id="path3196"
+       d="m 1860,432.3622 -105,-60.00003 0,-119.99999 105,-60 105,60 0,119.99999 z"
+       style="fill:#e74c3c;fill-opacity:1;stroke:none;display:inline"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <path
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline"
+       d="m 1860,357.36218 40,-20 65,35 -105,60.00002 z"
+       id="path3200"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <path
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline"
+       d="m 1900,287.36217 0,50.00001 65,35 0,-120 z"
+       id="path3202"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <path
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline"
+       d="m 1820,287.36217 0,50.00001 -65,35 0,-120 z"
+       id="path3212"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <path
+       style="fill:#000000;fill-opacity:0.31372549;stroke:none;display:inline"
+       d="m 1755,372.36218 65,-35 40,20 0,75.00002 z"
+       id="path3214"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/pagem/Desktop/geefutu.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
   </g>
 </svg>

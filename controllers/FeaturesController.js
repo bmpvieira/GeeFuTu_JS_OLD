@@ -1,14 +1,16 @@
+var Auth = require('./AuthController');
+
 module.exports.controller = function (app) {
 
-    app.get('/features', function (req, res) {
+    app.get('/:username/:organism/features', function (req, res) {
        return  res.render('features/index')
     });
 
-    app.get('/features/new', function (req, res) {
+    app.get('/:username/:organism/features/new',Auth.isAuthenticated, function (req, res) {
        return  res.render('features/new')
     });
 
-    app.get('/features/show', function (req, res) {
+    app.get('/:username/:organism/features/show', function (req, res) {
         return res.render('features/show')
     });
 
