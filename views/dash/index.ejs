@@ -4,6 +4,11 @@
 
     <h2>Dash</h2>
 
+    <h3>Organisms</h3>
+    <% organisms.forEach(function(org){ %>
+    <h4><a href="/<%- user.username %>/<%- org.localName %>"><%- org.localName %></a></h4>
+    <% }); %>
+
 </div>
 
 <% include ../foot %>

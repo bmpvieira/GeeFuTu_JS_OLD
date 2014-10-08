@@ -63,6 +63,10 @@ module.exports.controller = function (app) {
 
     app.get('/signup', function (req, res) {
 
+        if (req.isAuthenticated()) {
+            return res.redirect('/');
+        }
+
         var username = '';
         var email = '';
         var password = '';
@@ -71,6 +75,11 @@ module.exports.controller = function (app) {
     });
 
     app.post('/signup', function (req, res) {
+
+        if (req.isAuthenticated()) {
+            return res.redirect('/');
+        }
+
         var username = req.body.username;
         var email = req.body.email;
         var password = req.body.password;
@@ -79,6 +88,10 @@ module.exports.controller = function (app) {
 
     app.post('/join', function (req, res) {
 
+        if (req.isAuthenticated()) {
+            return res.redirect('/');
+        }
+
         var username = req.body.username;
         var email = req.body.email;
         var password = req.body.password;
@@ -86,17 +99,41 @@ module.exports.controller = function (app) {
 
         //exists and eq
         if (username && email && password && confirmpassword && password === confirmpassword) {
-            var user = new User({
-                username: username,
-                email: email,
-                password: password
-            });
 
-            user.save(function (err, r) {
+            User.canHaveUsername(username, function (err, canHaveUsername) {
+
                 if (err) {
                     return res.render('error', {message: err});
                 }
-                return res.redirect('/signin');
+
+                if (canHaveUsername) {
+
+                    User.emailAddressInUse(email, function (err, emailAddressInUse) {
+
+                        if (err) {
+                            return res.render('error', {message: err});
+                        }
+
+                        if (emailAddressInUse) {
+                            return res.render('error', {message: 'email address is used by another user.'});
+                        }
+
+                        var user = new User({
+                            username: username,
+                            email: email,
+                            password: password
+                        });
+
+                        user.save(function (err, r) {
+                            if (err) {
+                                return res.render('error', {message: err});
+                            }
+                            return res.redirect('/signin');
+                        });
+                    });
+                } else {
+                    return res.render('error', {message: 'username is already in use.'});
+                }
             });
         } else {
             return res.render('error', {message: 'password + confirm password do not match'});

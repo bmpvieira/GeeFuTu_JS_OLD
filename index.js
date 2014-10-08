@@ -11,6 +11,9 @@ var flash = require('connect-flash');
 var app = express();
 var dbURI = 'mongodb://localhost/geefutu';
 
+var User = require('./models/User');
+var Organism = require('./models/Organism');
+
 
 var setupMiddleware = function () {
     app.use(morgan('dev'));
@@ -61,9 +64,21 @@ var setupMiddleware = function () {
 var loadRoutes = function () {
 
     app.get('/', function (req, res) {
-        if (req.user && req.user.username) {
+
+
+        if (req.user && req.user.username && req.isAuthenticated()) {
             //dash
-            res.render('dash/index');
+            User.getUserByUsername(req.user.username, function (err, user) {
+                if (err) {
+                    return res.render('error', {message: error});
+                }
+                Organism.findByUser(user._id, function (err, orgs) {
+                    if (err) {
+                        return res.render('error', {message: error});
+                    }
+                    res.render('dash/index', {user: user, organisms: orgs});
+                });
+            });
         } else {
             //public index
             res.render('index');
