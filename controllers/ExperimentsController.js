@@ -36,7 +36,12 @@ module.exports.controller = function (app) {
         });
     });
 
-    app.get('/:username/:organism/experiments/add', Auth.isAuthenticated, function (req, res) {
+    app.get('/:username/:organism/experiments/add', function (req, res) {
+
+        if (req.isUnauthenticated()) {
+            return res.redirect('/signin');
+        }
+
         Genome.findAll(function (err, gens) {
             if (err) {
                 return res.render('error', {message: err});
@@ -47,7 +52,11 @@ module.exports.controller = function (app) {
         });
     });
 
-    app.post('/:username/:organism/experiments/add', Auth.isAuthenticated, function (req, res) {
+    app.post('/:username/:organism/experiments/add', function (req, res) {
+
+        if (req.isUnauthenticated()) {
+            return res.redirect('/signin');
+        }
 
         var name = req.body.name;
         var description = req.body.description;

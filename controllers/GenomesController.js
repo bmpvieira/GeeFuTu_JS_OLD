@@ -42,7 +42,10 @@ module.exports.controller = function (app) {
         });
     });
 
-    app.get('/:username/:organism/genomes/add', Auth.isAuthenticated, function (req, res) {
+    app.get('/:username/:organism/genomes/add', function (req, res) {
+        if (req.isUnauthenticated()) {
+            return res.redirect('/signin');
+        }
         Organism.findAll(function (err, orgs) {
             if (err) {
                 return res.render('error', {message: err});
@@ -54,7 +57,11 @@ module.exports.controller = function (app) {
 
     });
 
-    app.post('/:username/:organism/genomes/add', Auth.isAuthenticated, function (req, res) {
+    app.post('/:username/:organism/genomes/add', function (req, res) {
+
+        if (req.isUnauthenticated()) {
+            return res.redirect('/signin');
+        }
 
         //order: create genome, get its id, add all refs from file, link them to genome by id
 
@@ -76,7 +83,7 @@ module.exports.controller = function (app) {
 
             genome.save(function (err, gen) {
                 if (err) {
-                    return res.render('error',{message: err});
+                    return res.render('error', {message: err});
                 }
 
                 Fasta.read(file.path, function (ref) {
@@ -85,7 +92,7 @@ module.exports.controller = function (app) {
                     });
                     reference.save(function (err, r) {
                         if (err) {
-                            return res.render('error',{message: err});
+                            return res.render('error', {message: err});
                         }
                     });
                 }, function () {

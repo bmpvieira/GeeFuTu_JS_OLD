@@ -4,14 +4,16 @@
 
     <h2>Add Organism</h2>
 
-    <form role="form" action="/organisms/add" method="post">
+    <form role="form" action="/new" method="post">
         <div class="form-group">
             <label for="localname">Local Name</label>
-            <input type="text" class="form-control" id="localname" name="localname" placeholder="Enter Local Name" required>
+            <input type="text" class="form-control" id="localname" name="localname" placeholder="Enter Local Name"
+                   required>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description" required>
+            <input type="text" class="form-control" id="description" name="description" placeholder="Enter Description"
+                   required>
         </div>
         <div class="form-group">
             <label for="genus">Genus</label>
@@ -31,7 +33,13 @@
         </div>
         <div class="form-group">
             <label for="taxonomy">NCBI Taxonomy ID</label>
-            <input type="text" class="form-control" id="taxonomy" name="taxonomy" placeholder="Enter NCBI Taxonomy ID" required>
+            <input type="text" class="form-control" id="taxonomy" name="taxonomy" placeholder="Enter NCBI Taxonomy ID"
+                   required>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input id="private" name="private" type="checkbox"> Private
+            </label>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     </form>

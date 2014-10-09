@@ -21,9 +21,21 @@ var setupMiddleware = function () {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: false}));
     app.use(multer({dest: './uploads/'}));
+
+    var secret = "", rand;
+    for (var i = 0; i < 36; i++) {
+        rand = Math.floor(Math.random() * 15);
+        if (rand < 10) {
+            // for 0-9
+            secret += String.fromCharCode(48 + rand);
+        } else {
+            // for a-f
+            secret += String.fromCharCode(97 + (rand - 10));
+        }
+    }
+
     app.use(session({
-        //session secret - TODO: CHANGE THIS TO SOMETHING ELSE!
-        secret: 'changemenow',
+        secret: secret,
         cookie: {
             expires: false
         }
@@ -65,7 +77,7 @@ var loadRoutes = function () {
 
     app.get('/', function (req, res) {
 
-
+        //if user is signed in send them to DASH else send them to home
         if (req.user && req.user.username && req.isAuthenticated()) {
             //dash
             User.getUserByUsername(req.user.username, function (err, user) {
@@ -101,13 +113,12 @@ var loadRoutes = function () {
     var GenomesController = require('./controllers/GenomesController');
     GenomesController.controller(app);
 
-    //TODO keep this second from last
-    var UserController = require('./controllers/UserController');
-    UserController.controller(app);
 
-    //TODO keep this last
     var OrganismsController = require('./controllers/OrganismsController');
     OrganismsController.controller(app);
+
+    var UserController = require('./controllers/UserController');
+    UserController.controller(app);
 };
 
 var mongoConnection = function () {

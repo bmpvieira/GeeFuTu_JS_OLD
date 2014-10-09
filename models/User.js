@@ -26,7 +26,7 @@ userSchema.pre('save', function (next) {
 });
 
 userSchema.statics.getUserByUsername = function (username, cb) {
-    User.findOne({username: username}).exec(cb);
+    User.findOne({username: username.toLowerCase()}).exec(cb);
 };
 
 userSchema.statics.emailAddressInUse = function (email, cb) {
@@ -46,7 +46,7 @@ userSchema.statics.emailAddressInUse = function (email, cb) {
 userSchema.statics.canHaveUsername = function (username, cb) {
 
 
-    if (_.contains(RESERVED_NAMED, username)) {
+    if (_.contains(RESERVED_NAMED, username.toLowerCase())) {
         var err = new Error(username + ' is reserved. Sorry.');
         return cb(err);
     }

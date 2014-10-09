@@ -8,7 +8,6 @@ module.exports.controller = function (app) {
 
         User.getUserByUsername(username, function (err, user) {
 
-
             if (err) {
                 return res.render('error', {message: err});
             }

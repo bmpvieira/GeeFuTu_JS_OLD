@@ -29,6 +29,18 @@ organismSchema.statics.findByUserAndLocal = function (user, local, cb) {
 
 };
 
+organismSchema.statics.checkIsExistsByLocalName = function (localName, cb) {
+    Organism.findOne({localName: localName.toLowerCase()}, function (err, org) {
+        if (err) {
+            return cb(err);
+        }
+        if (org) {
+            return cb(null, true);
+        }
+        return cb(null, false);
+    });
+};
+
 organismSchema.statics.findByUser = function (user, cb) {
     Organism.find({
         $or: [
@@ -44,7 +56,7 @@ organismSchema.methods.canView = function (user, cb) {
 
     var userID = user._id;
 
-    console.log('user id',userID);
+    console.log('user id', userID);
 
     cb(this.owner == userID || _.contains(this.viewers, userID) || _.contains(this.editors, userID) || _.containes(this.admins, userID)); //callback with result of checks
 };
