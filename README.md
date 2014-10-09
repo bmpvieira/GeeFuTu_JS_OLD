@@ -19,7 +19,7 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 * Public projects.
 * GFF, BAM, VCF, BigWig BED and BigBED support.
 * BioJS visualisation.
-* forking.
+* Forking.
 * Tutorial.
 * Full test coverage.
 * Synteny view.
