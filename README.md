@@ -9,13 +9,13 @@ GeeFuTu is available for anyone to install from source but will also be a servic
 
 GeeFuTu is still heavily under development, please check the Road Map for list of completed and upcoming features.
 
-## Private beta server will be available 1st November 2014
+### Private beta server will be available 1st November 2014
 > All data will be removed at the end of this beta
 
-## Public beta server will be available 20th November 2014
+### Public beta server will be available 20th November 2014
 > All data will be removed at the end of this beta
 
-## Pulic stable server will be available late December 2014
+### Pulic stable server will be available late December 2014
 
 ### Road Map
 
