@@ -14,7 +14,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="GeeFuTu.svg">
+   sodipodi:docname="GeeFuTu.svg"
+   inkscape:export-filename="/Users/pagem/Desktop/all.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -24,9 +27,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="1116.5243"
-     inkscape:cy="283.50246"
+     inkscape:zoom="0.7"
+     inkscape:cx="1186.9426"
+     inkscape:cy="597.99035"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="true"
@@ -34,9 +37,9 @@
      inkscape:guide-bbox="true"
      inkscape:window-width="1920"
      inkscape:window-height="1079"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1">
+     inkscape:window-x="452"
+     inkscape:window-y="96"
+     inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
        id="grid2985" />
@@ -49,7 +52,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -65,7 +68,7 @@
      style="display:inline">
     <g
        id="g4321"
-       transform="translate(-262.63966,-8.08122)">
+       transform="translate(-270.32497,-6.9236334)">
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
@@ -174,7 +177,7 @@
     </g>
     <g
        id="g4385"
-       transform="translate(325.26912,-303.04576)">
+       transform="translate(228.57865,-330.58875)">
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
@@ -283,7 +286,7 @@
     </g>
     <g
        id="g4353"
-       transform="translate(26.263966,-729.33013)">
+       transform="translate(-20.0306,-748.3756)">
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
@@ -392,7 +395,7 @@
     </g>
     <g
        id="g4401"
-       transform="translate(-450.52803,34.345186)">
+       transform="translate(-458.21336,-9.7765474)">
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
@@ -501,7 +504,7 @@
     </g>
     <g
        id="g4337"
-       transform="translate(-230.31478,-133.34013)">
+       transform="translate(-262.35549,-138.24346)">
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
@@ -610,7 +613,7 @@
     </g>
     <g
        id="g4417"
-       transform="translate(-232.33508,-24.243661)">
+       transform="translate(-290.52803,-41.685117)">
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
@@ -719,7 +722,7 @@
     </g>
     <g
        id="g4369"
-       transform="translate(280.82241,-252.53813)">
+       transform="translate(264.83241,-532.61926)">
       <path
          inkscape:export-ydpi="300"
          inkscape:export-xdpi="300"
