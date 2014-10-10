@@ -1,5 +1,8 @@
 var Organism = require('../models/Organism');
 var User = require('../models/User');
+var AuthController = require('./AuthController');
+var Utils = require('../utils/utils');
+
 module.exports.controller = function (app) {
 
     app.get('/:username/:organism', function (req, res) {
@@ -19,24 +22,24 @@ module.exports.controller = function (app) {
                 return res.render('error', {message: 'user does not exist'});
             }
 
-            Organism.findByUserAndLocal(user, organism, function (err, org) {
+            Organism.findByUserAndLocalName(user, organism, function (err, org) {
 
                 if (err) { //error
                     return res.send(err);
                 }
 
                 if (!org) { //no matches
-                    return res.render('error', {message: 'cound not find project'});
+                    return Utils.checkError(res, 'cound not find project');
                 }
                 if (org.hidden) { //hidden from public
                     if (!currentUser) {//no user signed in
-                        return res.render('error', {message: 'This is private'});
+                        return Utils.checkError(res, 'This is private');
                     } else { //    user is signed in
                         org.canView(user, function (bool) {
                             if (bool) {
                                 return res.render('organisms/show', {organism: org});
                             } else {
-                                return res.render('error', {message: 'This is private'});
+                                return Utils.checkError(res, 'This is private');
                             }
                         });
                     }
@@ -47,6 +50,33 @@ module.exports.controller = function (app) {
         });
     });
 
+    app.get('/:username/:organism/clone', AuthController.isAuthenticated, function (req, res) {
+
+        var username = req.param("username").toLowerCase();
+        var organism = req.param("organism").toLowerCase();
+
+        User.getUserByUsername(username, function (err, user) {
+
+            if (err) {
+                return Utils.checkError(res, err);
+            }
+
+            if (!user) {
+                return Utils.checkError(res, 'We could not find you!?');
+            }
+
+            Organism.findByUserAndLocalName(user, organism, function (err, org) {
+
+                if (err) {
+                    return Utils.checkError(res, err);
+                }
+
+
+
+            });
+
+        });
+    });
 
     //app.get('/organisms', function (req, res) {
     //
@@ -68,11 +98,11 @@ module.exports.controller = function (app) {
         return res.render('organisms/new');
     });
 
-    app.post('/new', function (req, res) {
+    app.post('/new', AuthController.isAuthenticated, function (req, res) {
 
-        if (req.isUnauthenticated()) {
-            res.redirect('/signin');
-        }
+        //if (req.isUnauthenticated()) {
+        //    res.redirect('/signin');
+        //}
 
         var ownerID = req.user._id;
         var ownerUsername = req.user.username;

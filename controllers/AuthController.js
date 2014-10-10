@@ -6,13 +6,13 @@ var LocalStrategy = require('passport-local').Strategy;
 module.exports.controller = function (app) {
 
 
-    //this.isAuthenticated = function (req, res, next) {
-    //
-    //    if (req.isAuthenticated()) {
-    //        return next();
-    //    }
-    //    res.redirect('/signin');
-    //};
+    this.isAuthenticated = function (req, res, next) {
+
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect('/signin');
+    };
 
 
     passport.serializeUser(function (user, done) {

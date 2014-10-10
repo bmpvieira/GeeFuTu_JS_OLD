@@ -18,7 +18,7 @@ var organismSchema = mongoose.Schema({
     admins: [String]
 });
 
-organismSchema.statics.findByUserAndLocal = function (user, local, cb) {
+organismSchema.statics.findByUserAndLocalName = function (user, local, cb) {
 
     console.log(user);
 

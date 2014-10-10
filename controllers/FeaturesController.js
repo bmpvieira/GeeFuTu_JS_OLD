@@ -1,3 +1,4 @@
+var AuthController = require('./AuthController');
 
 module.exports.controller = function (app) {
 
@@ -5,10 +6,10 @@ module.exports.controller = function (app) {
        return  res.render('features/index')
     });
 
-    app.get('/:username/:organism/features/new', function (req, res) {
-        if (req.isUnauthenticated()) {
-            return res.redirect('/signin');
-        }
+    app.get('/:username/:organism/features/new',AuthController.isAuthenticated, function (req, res) {
+        //if (req.isUnauthenticated()) {
+        //    return res.redirect('/signin');
+        //}
        return  res.render('features/new')
     });
 

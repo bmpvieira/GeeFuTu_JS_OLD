@@ -3,7 +3,7 @@ var Organism = require('../models/Organism');
 var Reference = require('../models/Reference');
 var Fasta = require('../lib/fasta');
 var async = require('async');
-var Auth = require('./AuthController');
+var AuthController = require('./AuthController');
 
 /**
  *
@@ -42,10 +42,7 @@ module.exports.controller = function (app) {
         });
     });
 
-    app.get('/:username/:organism/genomes/add', function (req, res) {
-        if (req.isUnauthenticated()) {
-            return res.redirect('/signin');
-        }
+    app.get('/:username/:organism/genomes/add',AuthController.isAuthenticated, function (req, res) {
         Organism.findAll(function (err, orgs) {
             if (err) {
                 return res.render('error', {message: err});
@@ -57,11 +54,7 @@ module.exports.controller = function (app) {
 
     });
 
-    app.post('/:username/:organism/genomes/add', function (req, res) {
-
-        if (req.isUnauthenticated()) {
-            return res.redirect('/signin');
-        }
+    app.post('/:username/:organism/genomes/add',AuthController.isAuthenticated, function (req, res) {
 
         //order: create genome, get its id, add all refs from file, link them to genome by id
 

@@ -3,7 +3,7 @@ var Genome = require('../models/Genome');
 var GFF = require('../lib/gff3');
 var Feature = require('../models/Feature');
 var async = require('async');
-var Auth = require('./AuthController');
+var AuthController = require('./AuthController');
 
 module.exports.controller = function (app) {
 
@@ -36,11 +36,11 @@ module.exports.controller = function (app) {
         });
     });
 
-    app.get('/:username/:organism/experiments/add', function (req, res) {
+    app.get('/:username/:organism/experiments/add',AuthController.isAuthenticated, function (req, res) {
 
-        if (req.isUnauthenticated()) {
-            return res.redirect('/signin');
-        }
+        //if (req.isUnauthenticated()) {
+        //    return res.redirect('/signin');
+        //}
 
         Genome.findAll(function (err, gens) {
             if (err) {
@@ -52,11 +52,11 @@ module.exports.controller = function (app) {
         });
     });
 
-    app.post('/:username/:organism/experiments/add', function (req, res) {
+    app.post('/:username/:organism/experiments/add',AuthController.isAuthenticated, function (req, res) {
 
-        if (req.isUnauthenticated()) {
-            return res.redirect('/signin');
-        }
+        //if (req.isUnauthenticated()) {
+        //    return res.redirect('/signin');
+        //}
 
         var name = req.body.name;
         var description = req.body.description;
