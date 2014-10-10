@@ -8,6 +8,13 @@ GeeFuTu is a platform for sharing and updating genomics data, projects can be pr
 
 GeeFuTu is still heavily under development, please check the Road Map for list of completed and upcoming features.
 
+## Private beta server will be available 1st November 2014
+> All data will be removed at the end of this beta
+
+## Public beta server will be available 20th November 2014
+> All data will be removed at the end of this beta
+
+## Pulic stable server will be available late December 2014
 
 ### Road Map
 
@@ -19,7 +26,7 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 * Public projects.
 * GFF, BAM, VCF, BigWig BED and BigBED support.
 * BioJS visualisation.
-* Forking.
+* Forking/Cloning.
 * Tutorial.
 * Full test coverage.
 * Synteny view.
