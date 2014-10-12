@@ -1,5 +1,6 @@
 # GeeFuTu
 [![Build Status](https://drone.io/github.com/wookoouk/GeeFuTu/status.png)](https://drone.io/github.com/wookoouk/GeeFuTu/latest)
+[ ![Codeship Status for wookoouk/GeeFuTu](https://www.codeship.io/projects/6814a4e0-345c-0132-3d30-568896f18043/status)](https://www.codeship.io/projects/40751)
 
 <img align="right" height="300" src="https://raw.githubusercontent.com/wookoouk/GeeFuTu/master/public/GeeFuTu.png">
 
