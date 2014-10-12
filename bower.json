@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.2.0",
-    "dalliance": "dasmoth/dalliance"
+    "dalliance": "dasmoth/dalliance",
+    "EpicEditor": "OscarGodson/EpicEditor#~0.2.2"
   }
 }

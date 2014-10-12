@@ -2,6 +2,7 @@ var Organism = require('../models/Organism');
 var User = require('../models/User');
 var AuthController = require('./AuthController');
 var Utils = require('../utils/utils');
+var marked = require('marked');
 
 module.exports.controller = function (app) {
 
@@ -31,6 +32,8 @@ module.exports.controller = function (app) {
                 if (!org) { //no matches
                     return Utils.checkError(res, 'cound not find project');
                 }
+                var marked = ('I am using __markdown__.');
+
                 if (org.hidden) { //hidden from public
                     if (!currentUser) {//no user signed in
                         return Utils.checkError(res, 'This is private');
