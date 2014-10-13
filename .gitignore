@@ -9,3 +9,4 @@ test/*.gff3
 npm-debug.log
 config.json
 public/dalliance
+coverage/
