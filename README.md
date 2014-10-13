@@ -1,6 +1,7 @@
 # GeeFuTu
 [![Build Status](https://drone.io/github.com/wookoouk/GeeFuTu/status.png)](https://drone.io/github.com/wookoouk/GeeFuTu/latest)
 [![Build Status](https://travis-ci.org/wookoouk/GeeFuTu.svg?branch=master)](https://travis-ci.org/wookoouk/GeeFuTu)
+[![Coverage Status](https://coveralls.io/repos/wookoouk/GeeFuTu/badge.png)](https://coveralls.io/r/wookoouk/GeeFuTu)
 
 <img align="right" height="300" src="https://raw.githubusercontent.com/wookoouk/GeeFuTu/master/public/GeeFuTu.png">
 
