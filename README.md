@@ -46,11 +46,11 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 ## Install
 
 ```sh
-npm install
-bower install
-gulp
-cd public/components/dalliance && npm install && gulp
-cp config-example.json config.json
+$ npm install
+$ bower install
+$ gulp
+$ cd public/components/dalliance && npm install && gulp
+$ cp config-example.json config.json
 ```
 
 ## Contributors
