@@ -43,15 +43,17 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 * * Public API.
 * Full Documentation.
 
-### Install
+## Install
 
-`npm install`    
-`bower install`    
-`gulp`    
-`cd public/components/dalliance && npm install && gulp`    
-`cp config-example.json config.json`    
+```sh
+npm install
+bower install
+gulp
+cd public/components/dalliance && npm install && gulp
+cp config-example.json config.json
+```
 
-### Contributors
+## Contributors
 
 Martin Page <wookoouk@gmail.com>    
 Shyam Rallapalli <Ghanasyam.Rallapalli@tsl.ac.uk>    
