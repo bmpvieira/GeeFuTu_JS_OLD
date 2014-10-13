@@ -4,7 +4,7 @@
 
 <img align="right" height="300" src="https://raw.githubusercontent.com/wookoouk/GeeFuTu/master/public/GeeFuTu.png">
 
-> GeeFuTu, Social Science
+#
 
 GeeFuTu is a platform for sharing and updating genomics data, projects can be private with per experiment permissions or public for anybody to view and edit.
 GeeFuTu is available for anyone to install from source but will also be a service available to all later in the year.

@@ -7,5 +7,5 @@ uploads/*
 test/*.fasta
 test/*.gff3
 npm-debug.log
-
+config.json
 public/dalliance

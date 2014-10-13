@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
+var chalk = require('chalk');
 var fs = require('fs');
 var flash = require('connect-flash');
 var app = express();
@@ -14,6 +15,21 @@ var dbURI = 'mongodb://localhost/geefutu';
 var User = require('./models/User');
 var Organism = require('./models/Organism');
 
+var getConfig = function () {
+    var configPath = './config.json';
+    fs.exists(configPath, function (exists) {
+        if (exists) {
+            var config = require('./config.json');
+            console.log(chalk.green('config loaded'));
+        } else {
+            console.log(chalk.red('ERROR', 'could not read the config file'));
+            console.log(chalk.red('please copy config-example.json to config.json and modify it as needed'));
+            process.exit();
+        }
+    });
+
+
+};
 
 var setupMiddleware = function () {
     app.use(morgan('dev'));
@@ -153,7 +169,7 @@ var startApp = function () {
     console.log('app started on 8080');
 };
 
-
+getConfig();
 setupMiddleware();
 loadRoutes();
 mongoConnection();
