@@ -40,7 +40,7 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 * Full test coverage.
 * Multiple Alignment Format (HAL?).
 * Remote logging.
-* * Public API.
+* Public API.
 * Full Documentation.
 
 ## Install
