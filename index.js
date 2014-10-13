@@ -19,17 +19,17 @@ var Organism = require('./models/Organism');
 var PORT = 8080
 
 var getConfig = function () {
-    var configPath = './config.json';
-    fs.exists(configPath, function (exists) {
-        if (exists) {
-            var config = require('./config.json');
-            util.logInfo('config loaded');
-        } else {
-          util.logError('could not read the config file');
-          util.logError('please copy config-example.json to config.json and modify it as needed');
-            process.exit();
-        }
-    });
+    // var configPath = './config.json';
+    // fs.exists(configPath, function (exists) {
+    //     if (exists) {
+    //         var config = require('./config.json');
+    //         util.logInfo('config loaded');
+    //     } else {
+    //       util.logError('could not read the config file');
+    //       util.logError('please copy config-example.json to config.json and modify it as needed');
+    //         process.exit();
+    //     }
+    // });
 };
 
 var setupMiddleware = function () {
