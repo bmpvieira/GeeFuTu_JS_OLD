@@ -4,9 +4,7 @@ var superagent = require('superagent');
 
 describe('ExperimentsController', function() {
 
-// before(function(done){
-//   var App = require('../index').start(done);
-// });
+  var App = require('../index');
 
 
 
