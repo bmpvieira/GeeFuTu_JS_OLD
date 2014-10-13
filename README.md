@@ -3,7 +3,7 @@
 [![Dependency Status](https://gemnasium.com/wookoouk/GeeFuTu.svg)](https://gemnasium.com/wookoouk/GeeFuTu)
 [![Coverage Status](https://coveralls.io/repos/wookoouk/GeeFuTu/badge.png?branch=master)](https://coveralls.io/r/wookoouk/GeeFuTu?branch=master)
 
-<img align="right" height="300" src="https://raw.githubusercontent.com/wookoouk/GeeFuTu/master/public/GeeFuTu.png">
+<img align="right" height="200" src="https://raw.githubusercontent.com/wookoouk/GeeFuTu/master/public/GeeFuTu.png">
 
 GeeFuTu is a platform for sharing and updating genomics data, projects can be private with per experiment permissions or public for anybody to view and edit.
 GeeFuTu is available for anyone to install from source but will also be a service available to all later in the year.
@@ -18,7 +18,7 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 ### Public BETA 20/11/14 - 20/11/14
 > All data will be removed at the end of this beta
 
-### Road Map
+## Road Map
 
 #### Dec 2014
 
