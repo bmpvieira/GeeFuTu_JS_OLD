@@ -10,7 +10,6 @@ module.exports.controller = function (app) {
 
     app.get('/:username/:organism/experiments', function (req, res) {
 
-
         var username = req.param("username").toLowerCase();
         var organism = req.param("organism").toLowerCase();
 
