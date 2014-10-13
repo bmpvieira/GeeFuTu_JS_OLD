@@ -16,12 +16,7 @@ module.exports.controller = function (app) {
 
         res.send('TODO');
     });
-    app.get('/:username/:organism/experiments/add', AuthController.isAuthenticated, function (req, res) {
-
-        //if (req.isUnauthenticated()) {
-        //    return res.redirect('/signin');
-        //}
-
+    app.get('/:username/:organism/experiments/add', AuthController.isAuthenticated, function (req, res)
         Genome.findAll(function (err, gens) {
             if (err) {
                 return res.render('error', {message: err});
@@ -34,9 +29,6 @@ module.exports.controller = function (app) {
 
     app.post('/:username/:organism/experiments/add', AuthController.isAuthenticated, function (req, res) {
 
-        //if (req.isUnauthenticated()) {
-        //    return res.redirect('/signin');
-        //}
 
         var name = req.body.name;
         var description = req.body.description;
@@ -104,31 +96,4 @@ module.exports.controller = function (app) {
         });
     });
 
-//app.get('/api/experiments', function (req, res) {
-//    Experiment.findAll(function (err, experiments) {
-//        if (err) {
-//            res.send('error');
-//        }
-//        res.send(experiments);
-//    });
-//});
-
-
-//app.get('/api/experiments/:id', function (req, res) {
-//    var id = req.param("id");
-//    var chr = req.query.chr;
-//    var min = req.query.min;
-//    var max = req.query.max;
-//    Feature.find(
-//        {experiment: id, seqid: chr, start: {$gt: min}, end: {$lt: max}},
-//        function (err, features) {
-//            if (err) {
-//                console.log('error', err);
-//            } else {
-//                return res.send(features);
-//            }
-//        });
-//});
-
-}
-;
+};
