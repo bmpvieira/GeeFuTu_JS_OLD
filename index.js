@@ -7,6 +7,7 @@ var multer = require('multer');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var chalk = require('chalk');
+var util = require('./lib/Utils')
 var fs = require('fs');
 var flash = require('connect-flash');
 var app = express();
@@ -15,20 +16,20 @@ var dbURI = 'mongodb://localhost/geefutu';
 var User = require('./models/User');
 var Organism = require('./models/Organism');
 
+var PORT = 8080
+
 var getConfig = function () {
     var configPath = './config.json';
     fs.exists(configPath, function (exists) {
         if (exists) {
             var config = require('./config.json');
-            console.log(chalk.green('config loaded'));
+            util.logInfo('config loaded');
         } else {
-            console.log(chalk.red('ERROR', 'could not read the config file'));
-            console.log(chalk.red('please copy config-example.json to config.json and modify it as needed'));
+          util.logError('could not read the config file');
+          util.logError('please copy config-example.json to config.json and modify it as needed');
             process.exit();
         }
     });
-
-
 };
 
 var setupMiddleware = function () {
@@ -141,32 +142,32 @@ var mongoConnection = function () {
     var db = mongoose.connection;
 
     db.on('connecting', function () {
-        console.log('connecting to MongoDB...');
+        util.logInfo('connecting to MongoDB...');
     });
 
     db.on('error', function (error) {
-        console.error('Error in MongoDb connection: ' + error);
+        util.logError('Error in MongoDb connection: ' + error);
         mongoose.disconnect();
     });
     db.on('connected', function () {
-        console.log('MongoDB connected!');
+        util.logInfo('MongoDB connected!');
     });
     db.once('open', function () {
-        console.log('MongoDB connection opened!');
+        util.logInfo('MongoDB connection opened!');
     });
     db.on('reconnected', function () {
-        console.log('MongoDB reconnected!');
+        util.logInfo('MongoDB reconnected!');
     });
     db.on('disconnected', function () {
-        console.log('MongoDB disconnected!');
+        util.logError('MongoDB disconnected!');
         mongoose.connect(dbURI, {server: {auto_reconnect: true}});
     });
     mongoose.connect(dbURI, {server: {auto_reconnect: true}});
 };
 
 var startApp = function () {
-    app.listen(8080);
-    console.log('app started on 8080');
+    app.listen(PORT);
+    util.logInfo('app started on '+PORT);
 };
 
 getConfig();

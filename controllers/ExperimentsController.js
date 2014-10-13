@@ -16,7 +16,7 @@ module.exports.controller = function (app) {
 
         res.send('TODO');
     });
-    app.get('/:username/:organism/experiments/add', AuthController.isAuthenticated, function (req, res)
+    app.get('/:username/:organism/experiments/add', AuthController.isAuthenticated, function (req, res){
         Genome.findAll(function (err, gens) {
             if (err) {
                 return res.render('error', {message: err});

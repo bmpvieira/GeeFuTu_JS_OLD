@@ -1,7 +1,7 @@
 var Organism = require('../models/Organism');
 var User = require('../models/User');
 var AuthController = require('./AuthController');
-var Utils = require('../utils/utils');
+var Utils = require('../lib/Utils');
 var marked = require('marked');
 
 module.exports.controller = function (app) {
