@@ -176,26 +176,20 @@ var startApp = function (cb) {
   cb();
 };
 
-async.series([
-  function(callback){
-  getConfig(callback)
-},
-function(callback){
-  setupMiddleware(callback)
-},
-function(callback){
-  loadRoutes(callback)
-},
-function(callback){
-  mongoConnection(callback)
-},
-function(callback){
-  startApp(callback)
-}
+  async.series([
+    function(callback){
+      getConfig(callback);
+    },
+    function(callback){
+      setupMiddleware(callback);
+    },
+    function(callback){
+      loadRoutes(callback);
+    },
+    function(callback){
+      mongoConnection(callback);
+    },
+    function(callback){
+      startApp(callback)
+    }
   ]);
-
-  // getConfig();
-  // setupMiddleware();
-  // loadRoutes();
-  // mongoConnection();
-  // startApp();
