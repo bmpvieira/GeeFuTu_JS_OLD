@@ -20,7 +20,7 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 
 ## Road Map
 
-#### Dec 2014
+### Dec 2014
 
 * Hosted service available.
 * Editing inside BioDalliance.
