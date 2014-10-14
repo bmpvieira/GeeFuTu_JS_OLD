@@ -19,7 +19,7 @@ gulp.task('lint', function () {
 });
 
 // cp config-example.json -> config.json
-gulp.task('configFile', function () {
+gulp.task('config-file', function () {
     return gulp.src("./config-example.json")
         .pipe(rename("./config.json"))
         .pipe(gulp.dest("./")); // ./dist/main/text/ciao/goodbye.md

@@ -5,6 +5,7 @@ var superagent = require('superagent');
 describe('ExperimentsController', function () {
 
     before(function () {
+        this.timeout(500);
         //start the server first
         var app = require('../index');
     });

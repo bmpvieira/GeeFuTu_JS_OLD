@@ -30,7 +30,7 @@ var getConfig = function (done) {
             //    TODO set more from config
         } else {
             util.logError('could not read the config file');
-            util.logError('please run `gulp configFile` or copy config-example.json to config.json');
+            util.logError('please run `gulp config-file` or copy config-example.json to config.json');
             process.exit();
         }
     });
