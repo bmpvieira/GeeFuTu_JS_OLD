@@ -64,7 +64,10 @@ var setupMiddleware = function (done) {
         secret: secret,
         cookie: {
             expires: false
-        }
+        },
+        //avoid nagging (these are the new values of express-session)
+        resave: false,
+        saveUninitialized: false
     }));
 
     app.use(express.static(__dirname + '/public'));

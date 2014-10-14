@@ -4,3 +4,7 @@ var superagent = require('superagent');
 describe('ExperimentsController', function() {
 
 });
+
+describe('Experiment Model', function() {
+
+});
