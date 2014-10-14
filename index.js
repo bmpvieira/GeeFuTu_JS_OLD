@@ -26,6 +26,7 @@ var getConfig = function (done) {
     fs.exists(configPath, function (exists) {
         if (exists) {
             var config = require('./config.json');
+            app.appConfig = config;
             inDevelopment = config.devMode;
             //    TODO set more from config
         } else {

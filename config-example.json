@@ -5,7 +5,7 @@
   "contactEmail": "info@example.org",
   "https": false,
   "mail": {
-    "fromAddress": "noreply@example.org",
+    "fromAddress": "no reply <noreply@example.org>",
     "service": "Gmail",
     "auth": {
       "user": "gmail.user@gmail.com",
