@@ -17,179 +17,177 @@ var dbURI = 'mongodb://localhost/geefutu';
 var User = require('./models/User');
 var Organism = require('./models/Organism');
 
-var PORT = 8080;
+var PORT = process.env.PORT || 8080;
 
-var getConfig = function (cb) {
-  // var configPath = './config.json';
-  // fs.exists(configPath, function (exists) {
-  //     if (exists) {
-  //         var config = require('./config.json');
-  //         util.logInfo('config loaded');
-  //     } else {
-  //       util.logError('could not read the config file');
-  //       util.logError('please copy config-example.json to config.json and modify it as needed');
-  //         process.exit();
-  //     }
-  // });
-  cb();
-};
+var inDevelopment = true;
 
-var setupMiddleware = function (cb) {
-  app.use(morgan('dev'));
-  app.use(cookieParser());
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended: false}));
-  app.use(multer({dest: './uploads/'}));
-
-  var secret = "", rand;
-  for (var i = 0; i < 36; i++) {
-    rand = Math.floor(Math.random() * 15);
-    if (rand < 10) {
-      // for 0-9
-      secret += String.fromCharCode(48 + rand);
-    } else {
-      // for a-f
-      secret += String.fromCharCode(97 + (rand - 10));
-    }
-  }
-
-  app.use(session({
-    secret: secret,
-    cookie: {
-      expires: false
-    }
-  }));
-
-  app.use(express.static(__dirname + '/public'));
-  app.use(passport.initialize());
-  app.use(passport.session());
-  app.use(flash());
-
-  app.set('view engine', 'ejs');
-  app.set('views', __dirname + '/views');
-
-  var appendLocalsToUseInViews = function (req, res, next) {
-    if (req.user != null && req.user.username != null) {
-      res.locals.userName = req.user.username;
-
-    }
-    next(null, req, res);
-  };
-  app.use(appendLocalsToUseInViews);
-
-  var flashes = function (req, res, next) {
-    var info = req.flash('info');
-    var error = req.flash('error');
-
-    if (info.length > 0) {
-      res.locals.info = info;
-    }
-    if (error.length > 0) {
-      res.locals.error = error;
-    }
-    next(null, req, res);
-  };
-  app.use(flashes);
-  cb();
-};
-
-var loadRoutes = function (cb) {
-
-  app.get('/', function (req, res) {
-
-    //if user is signed in send them to DASH else send them to home
-    if (req.user && req.user.username && req.isAuthenticated()) {
-      //dash
-      User.getUserByUsername(req.user.username, function (err, user) {
-        if (err) {
-          return res.render('error', {message: error});
+var getConfig = function (done) {
+    var configPath = './config.json';
+    fs.exists(configPath, function (exists) {
+        if (exists) {
+            var config = require('./config.json');
+            inDevelopment = config.devMode;
+            //    TODO set more from config
+        } else {
+            util.logError('could not read the config file');
+            util.logError('please run `gulp configFile` or copy config-example.json to config.json');
+            process.exit();
         }
-        Organism.findByUser(user._id, function (err, orgs) {
-          if (err) {
-            return res.render('error', {message: error});
-          }
-          res.render('dash/index', {user: user, organisms: orgs});
-        });
-      });
-    } else {
-      //public index
-      res.render('index');
-    }
-  });
-
-  app.get('/us', function (req, res) {
-    res.render('us');
-  });
-
-  var AuthController = require('./controllers/AuthController');
-  AuthController.controller(app);
-
-  var ExperimentsController = require('./controllers/ExperimentsController');
-  ExperimentsController.controller(app);
-
-  var FeaturesController = require('./controllers/FeaturesController');
-  FeaturesController.controller(app);
-
-  var GenomesController = require('./controllers/GenomesController');
-  GenomesController.controller(app);
-
-
-  var OrganismsController = require('./controllers/OrganismsController');
-  OrganismsController.controller(app);
-
-  var UserController = require('./controllers/UserController');
-  UserController.controller(app);
-  cb();
+    });
+    done();
 };
 
-var mongoConnection = function (cb) {
-  var db = mongoose.connection;
+var setupMiddleware = function (done) {
+    if (!inDevelopment) {
+        //log all requests
+        app.use(morgan('dev'));
+    }
 
-  db.on('connecting', function () {
-    util.logInfo('connecting to MongoDB...');
-  });
+    app.use(cookieParser());
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended: false}));
+    app.use(multer({dest: './uploads/'}));
 
-  db.on('error', function (error) {
-    util.logError('Error in MongoDb connection: ' + error);
-    mongoose.disconnect();
-  });
-  db.on('connected', function () {
-    util.logInfo('MongoDB connected!');
-  });
-  db.once('open', function () {
-    util.logInfo('MongoDB connection opened!');
-  });
-  db.on('reconnected', function () {
-    util.logInfo('MongoDB reconnected!');
-  });
-  db.on('disconnected', function () {
-    util.logError('MongoDB disconnected!');
+    var secret = "", rand;
+    for (var i = 0; i < 36; i++) {
+        rand = Math.floor(Math.random() * 15);
+        if (rand < 10) {
+            // for 0-9
+            secret += String.fromCharCode(48 + rand);
+        } else {
+            // for a-f
+            secret += String.fromCharCode(97 + (rand - 10));
+        }
+    }
+
+    app.use(session({
+        secret: secret,
+        cookie: {
+            expires: false
+        }
+    }));
+
+    app.use(express.static(__dirname + '/public'));
+    app.use(passport.initialize());
+    app.use(passport.session());
+    app.use(flash());
+
+    app.set('view engine', 'ejs');
+    app.set('views', __dirname + '/views');
+
+    var appendLocalsToUseInViews = function (req, res, next) {
+        if (req.user != null && req.user.username != null) {
+            res.locals.userName = req.user.username;
+
+        }
+        next(null, req, res);
+    };
+    app.use(appendLocalsToUseInViews);
+
+    var flashes = function (req, res, next) {
+        var info = req.flash('info');
+        var error = req.flash('error');
+
+        if (info.length > 0) {
+            res.locals.info = info;
+        }
+        if (error.length > 0) {
+            res.locals.error = error;
+        }
+        next(null, req, res);
+    };
+    app.use(flashes);
+    done();
+};
+
+var loadRoutes = function (done) {
+
+    var IndexController = require('./controllers/IndexController');
+    IndexController.controller(app);
+
+    var AuthController = require('./controllers/AuthController');
+    AuthController.controller(app);
+
+    var ExperimentsController = require('./controllers/ExperimentsController');
+    ExperimentsController.controller(app);
+
+    var FeaturesController = require('./controllers/FeaturesController');
+    FeaturesController.controller(app);
+
+    var GenomesController = require('./controllers/GenomesController');
+    GenomesController.controller(app);
+
+
+    var OrganismsController = require('./controllers/OrganismsController');
+    OrganismsController.controller(app);
+
+    var UserController = require('./controllers/UserController');
+    UserController.controller(app);
+    done();
+};
+
+var mongoConnection = function (done) {
+    var db = mongoose.connection;
+
+    db.on('connecting', function () {
+        if (!inDevelopment) {
+            util.logInfo('connecting to MongoDB...');
+        }
+    });
+
+    db.on('error', function (error) {
+        if (!inDevelopment) {
+            util.logError('Error in MongoDb connection: ' + error);
+        }
+        mongoose.disconnect();
+    });
+    db.on('connected', function () {
+        if (!inDevelopment) {
+            util.logInfo('MongoDB connected!');
+        }
+    });
+    db.once('open', function () {
+        if (!inDevelopment) {
+            util.logInfo('MongoDB connection opened!');
+        }
+    });
+    db.on('reconnected', function () {
+        if (!inDevelopment) {
+            util.logInfo('MongoDB reconnected!');
+        }
+    });
+    db.on('disconnected', function () {
+        if (!inDevelopment) {
+            util.logError('MongoDB disconnected!');
+        }
+        mongoose.connect(dbURI, {server: {auto_reconnect: true}});
+    });
     mongoose.connect(dbURI, {server: {auto_reconnect: true}});
-  });
-  mongoose.connect(dbURI, {server: {auto_reconnect: true}});
-  cb();
+    done();
 };
 
-var startApp = function (cb) {
-  app.listen(PORT);
-  util.logInfo('app started on '+PORT);
-  cb();
+var startApp = function (done) {
+    app.listen(PORT);
+    util.logInfo('app started on ' + PORT);
+    done();
 };
 
-  async.series([
-    function(callback){
-      getConfig(callback);
+async.series([
+    function (callback) {
+        getConfig(callback);
     },
-    function(callback){
-      setupMiddleware(callback);
+    function (callback) {
+        setupMiddleware(callback);
     },
-    function(callback){
-      loadRoutes(callback);
+    function (callback) {
+        loadRoutes(callback);
     },
-    function(callback){
-      mongoConnection(callback);
+    function (callback) {
+        mongoConnection(callback);
     },
-    function(callback){
-      startApp(callback)
+    function (callback) {
+        startApp(callback)
     }
-  ]);
+]);
+
+module.exports = app;

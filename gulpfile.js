@@ -8,12 +8,21 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var jsdoc = require('gulp-jsdoc');
+var rename = require("gulp-rename");
+
 
 // Lint Task
 gulp.task('lint', function () {
     return gulp.src('public/js/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
+});
+
+// cp config-example.json -> config.json
+gulp.task('configFile', function () {
+    return gulp.src("./config-example.json")
+        .pipe(rename("./config.json"))
+        .pipe(gulp.dest("./")); // ./dist/main/text/ciao/goodbye.md
 });
 
 // Compile Our Sass

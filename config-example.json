@@ -1,5 +1,6 @@
 {
   "appName": "GeeFuTu",
+  "devMode": true,
   "adminEmail": "admin@example.org",
   "contactEmail": "info@example.org",
   "https": false,
