@@ -3,7 +3,6 @@ var Genome = require('../models/Genome');
 var GFF = require('../lib/gff3');
 var Feature = require('../models/Feature');
 var async = require('async');
-var Promise = require("bluebird");
 var AuthController = require('./AuthController');
 
 module.exports.controller = function (app) {
