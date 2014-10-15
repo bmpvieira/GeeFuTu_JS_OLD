@@ -1,7 +1,7 @@
 var Experiment = require('../models/Experiment');
 var Genome = require('../models/Genome');
-var GFF = require('../lib/Gff3');
-var Feature = require('../models/Feature');
+// var GFF = require('../lib/Gff3');
+// var Feature = require('../models/Feature');
 var AuthController = require('./AuthController');
 var Util = require('../lib/Util');
 

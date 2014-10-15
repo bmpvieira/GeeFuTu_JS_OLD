@@ -83,7 +83,7 @@ module.exports.controller = function (app) {
                     var reference = new Reference({
                         name: ref.name, sequence: ref.seq, genome: gen._id
                     });
-                    reference.save(function (err, r) {
+                    reference.save(function (err) {
                         if (err) {
                             return res.render('error', {message: err});
                         }
@@ -100,7 +100,7 @@ module.exports.controller = function (app) {
     });
 
     app.get('/:username/:organism/genomes/show', function (req, res) {
-        return res.render('genomes/show')
+        return res.render('genomes/show');
     });
 
     //app.get('/api/genome/:id', function (req, res) {

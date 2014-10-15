@@ -1,4 +1,4 @@
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var gravatar = require('gravatar');
 var SALT_WORK_FACTOR = 10;
@@ -23,9 +23,9 @@ userSchema.pre('save', function (next) {
   }
 
     var user = this;
-    if (!user.isModified('password')) return next();
+    if (!user.isModified('password')){ rturn next()};
     bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
-        if (err) return next(err);
+        if (err) {return next(err)};
         bcrypt.hash(user.password, salt, function (err, hash) {
             if (err) return next(err);
             user.password = hash;
@@ -46,10 +46,10 @@ userSchema.statics.emailAddressInUse = function (email, cb) {
             return cb(err);
         }
         if (user) {
-            return cb(null, true)
+            return cb(null, true);
         }
         return cb(null, false);
-    })
+    });
 };
 
 userSchema.statics.canHaveUsername = function (username, cb) {
@@ -65,7 +65,7 @@ userSchema.statics.canHaveUsername = function (username, cb) {
             return cb(err);
         }
         if (user) {
-            return cb(null, false)
+            return cb(null, false);
         }
         return cb(null, true);
 

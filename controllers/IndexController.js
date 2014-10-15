@@ -1,3 +1,5 @@
+var Organism = require('../models/Organism');
+var User = require('../models/User');
 module.exports.controller = function (app) {
 
     app.get('/', function (req, res) {
@@ -7,11 +9,11 @@ module.exports.controller = function (app) {
             //dash
             User.getUserByUsername(req.user.username, function (err, user) {
                 if (err) {
-                    return res.render('error', {message: error});
+                    return res.render('error', {message: err});
                 }
                 Organism.findByUser(user._id, function (err, orgs) {
                     if (err) {
-                        return res.render('error', {message: error});
+                        return res.render('error', {message: err});
                     }
                     res.render('dash/index', {user: user, organisms: orgs});
                 });

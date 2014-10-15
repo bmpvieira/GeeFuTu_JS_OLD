@@ -7,7 +7,7 @@ var sass = require('gulp-sass');
 // var concat = require('gulp-concat');
 // var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
-var jsdoc = require('gulp-jsdoc');
+// var jsdoc = require('gulp-jsdoc');
 var rename = require("gulp-rename");
 
 

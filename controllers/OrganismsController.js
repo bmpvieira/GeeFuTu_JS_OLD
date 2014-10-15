@@ -2,7 +2,7 @@ var Organism = require('../models/Organism');
 var User = require('../models/User');
 var AuthController = require('./AuthController');
 var Util = require('../lib/Util');
-var marked = require('marked');
+// var marked = require('marked');
 
 module.exports.controller = function (app) {
 
@@ -126,7 +126,7 @@ module.exports.controller = function (app) {
                 owner: ownerID,
                 hidden: hidden
             });
-            org.save(function (err, organism) {
+            org.save(function (err) {
                 if (err) {
                     return Util.renderError(res, err);
                 }

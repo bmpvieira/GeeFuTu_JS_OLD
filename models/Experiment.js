@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var BinaryExperimentFile = require('../lib/BinaryExperimentFile');
+var Feature = require('./Feature');
+var GFF = require('../lib/gff3');
 
 var experimentSchema = mongoose.Schema({
     name: {type: String, required: true},
@@ -37,7 +39,7 @@ experimentSchema.pre('save', function (next) {
 experimentSchema.methods.updateFilePath = function (newPath) {
     this.file = newPath;
     this.save(); //TODO callback!
-}
+};
 
 experimentSchema.methods.processFile = function (experiment, cb) {
 
