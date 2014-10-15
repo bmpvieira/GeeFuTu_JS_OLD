@@ -1,7 +1,7 @@
 var Genome = require('../models/Genome');
 var Organism = require('../models/Organism');
 var Reference = require('../models/Reference');
-var Fasta = require('../lib/fasta');
+var Fasta = require('../lib/Fasta');
 var async = require('async');
 var AuthController = require('./AuthController');
 

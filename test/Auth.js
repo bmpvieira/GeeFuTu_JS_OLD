@@ -4,17 +4,20 @@ var superagent = require('superagent');
 
 var baseURL = 'http://localhost:8080';
 
+var testUser = {
+    username: 'test',
+    password: 'testuserpass',
+    confirmpassword: 'testuserpass',
+    email: 'test@example.org'
+};
+
 describe('AuthController', function () {
 
-    var testUser = {
-        username: 'test',
-        password: 'testuserpass',
-        confirmpassword: 'testuserpass',
-        email: 'test@example.org'
-    };
+
 
     before(function () {
         var app = require('../index');
+
     });
 
     after(function () {

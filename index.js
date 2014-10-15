@@ -7,7 +7,7 @@ var multer = require('multer');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var async = require('async');
-var util = require('./lib/UTIL');
+var util = require('./lib/Util');
 var fs = require('fs');
 var flash = require('connect-flash');
 var app = express();
@@ -78,7 +78,7 @@ var setupMiddleware = function (done) {
     app.set('views', __dirname + '/views');
 
     var appendLocalsToUseInViews = function (req, res, next) {
-        if (req.user !== null && req.user.username !== null) {
+        if (req.user != null && req.user.username != null) {
             res.locals.userName = req.user.username;
 
         }

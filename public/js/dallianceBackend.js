@@ -96,11 +96,11 @@ GeeFuTuFeatureSource.prototype.fetch = function (chr, min, max, scale, types, po
     var url = this.uri + '?chr=' + chr + '&min=' + min + '&max=' + max;
     if (this.refs) {
         for (var ri = 0; ri < this.refs.length; ++ri)
-            url = url + '&ref=' + this.refs[ri];
+            url += '&ref=' + this.refs[ri];
     }
 
     if (this.refs.length > 1)
-        url = url +'&color=true';
+        url += '&color=true';
 
     var req = new XMLHttpRequest();
     req.onreadystatechange = function () {

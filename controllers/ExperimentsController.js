@@ -1,9 +1,9 @@
 var Experiment = require('../models/Experiment');
 var Genome = require('../models/Genome');
-var GFF = require('../lib/gff3');
+var GFF = require('../lib/Gff3');
 var Feature = require('../models/Feature');
 var AuthController = require('./AuthController');
-var Util = require('../lib/UTIL');
+var Util = require('../lib/Util');
 
 module.exports.controller = function (app) {
 
