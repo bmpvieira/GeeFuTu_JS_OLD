@@ -13,7 +13,7 @@ GeeFuTuReferenceSource.prototype.fetch = function (chr, min, max, pool, callback
     console.log(url);
     var req = new XMLHttpRequest();
     req.onreadystatechange = function () {
-        if (req.readyState == 4) {
+        if (req.readyState === 4) {
             thisB.busy--;
             //thisB.notifyActivity();
             if (req.status >= 300) {
@@ -84,15 +84,8 @@ GeeFuTuFeatureSource.prototype.addActivityListener = function (listener) {
     this.activityListeners.push(listener);
 };
 
-GeeFuTuFeatureSource.prototype.notifyActivity = function () {
-    for (var li = 0; li < this.activityListeners.length; ++li) {
-        try {
-            this.activityListeners[li](this.busy);
-        } catch (e) {
-            console.log(e);
-        }
-    }
-};
+// They do the same thing
+GeeFuTuFeatureSource.prototype.notifyActivity = GeeFuTuFeatureSource.prototype.notifyChange;
 
 GeeFuTuFeatureSource.prototype.getScales = function () {
     return [];
@@ -103,15 +96,15 @@ GeeFuTuFeatureSource.prototype.fetch = function (chr, min, max, scale, types, po
     var url = this.uri + '?chr=' + chr + '&min=' + min + '&max=' + max;
     if (this.refs) {
         for (var ri = 0; ri < this.refs.length; ++ri)
-            url += '&ref=' + this.refs[ri];
+            url = url + '&ref=' + this.refs[ri];
     }
 
     if (this.refs.length > 1)
-        url += '&color=true';
+        url = url +'&color=true';
 
     var req = new XMLHttpRequest();
     req.onreadystatechange = function () {
-        if (req.readyState == 4) {
+        if (req.readyState === 4) {
             thisB.busy--;
             thisB.notifyActivity();
             if (req.status >= 300) {
@@ -119,7 +112,7 @@ GeeFuTuFeatureSource.prototype.fetch = function (chr, min, max, scale, types, po
             } else {
                 var jf = JSON.parse(req.response);
                 var features = [];
-                for (fi = 0; fi < jf.length; ++fi) {
+                for (var fi = 0; fi < jf.length; ++fi) {
                     var j = jf[fi];
 
                     var f = new DASFeature();
@@ -153,19 +146,19 @@ dalliance_registerSourceAdapterFactory('geefutuExperiment', function (source) {
 });
 
 
-function getSnpSource(source) {
-    if (source.setRef) {
-        return source;
-    } else if (source.source) {
-        return getSnpSource(source.source);
-    } else if (source.sources) {
-        for (var si = 0; si < source.sources.length; ++si) {
-            var ss = getSnpSource(source.sources[si]);
-            if (ss)
-                return ss;
-        }
-    }
-}
+//function getSnpSource(source) {
+//    if (source.setRef) {
+//        return source;
+//    } else if (source.source) {
+//        return getSnpSource(source.source);
+//    } else if (source.sources) {
+//        for (var si = 0; si < source.sources.length; ++si) {
+//            var ss = getSnpSource(source.sources[si]);
+//            if (ss)
+//                return ss;
+//        }
+//    }
+//}
 
 //function ldserv_controllerPlugin(f, info) {
 //    var ss = getSnpSource(info.tier.featureSource);
