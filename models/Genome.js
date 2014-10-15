@@ -25,9 +25,9 @@ genomeSchema.statics.findAll = function search(cb) {
  */
 genomeSchema.pre('save', function (next) {
     if (!this.createdAt) {
-        this.createdAt = new Date;
+        this.createdAt = new Date();
     } else {
-        this.updatedAt = new Date;
+        this.updatedAt = new Date();
     }
     next();
 });

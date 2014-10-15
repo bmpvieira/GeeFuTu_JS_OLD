@@ -20,9 +20,9 @@ module.exports.controller = function (app) {
     });
     passport.deserializeUser(function (id, done) {
         User.findById(id, function (err, user) {
-            if (!err) done(null, user);
-            else done(err, null)
-        })
+            if (!err) {done(null, user);}
+            else {done(err, null);}
+        });
     });
 
     passport.use(new LocalStrategy(

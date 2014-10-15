@@ -9,10 +9,19 @@ var RESERVED_NAMED = ['us', 'about', 'signup', 'signin', 'join', 'wookoouk', 'he
 var userSchema = mongoose.Schema({
     username: {type: String, required: true, unique: true},
     email: {type: String, required: true, unique: true},
-    password: {type: String, required: true}
+    password: {type: String, required: true},
+    createdAt: Date,
+    updatedAt: Date
 });
 
 userSchema.pre('save', function (next) {
+
+  if (!this.createdAt) {
+      this.createdAt = new Date();
+  } else {
+      this.updatedAt = new Date();
+  }
+
     var user = this;
     if (!user.isModified('password')) return next();
     bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {

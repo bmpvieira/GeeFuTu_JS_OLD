@@ -64,9 +64,9 @@ organismSchema.methods.canView = function (user, cb) {
 
 organismSchema.pre('save', function (next) {
     if (!this.createdAt) {
-        this.createdAt = new Date;
+        this.createdAt = new Date();
     } else {
-        this.updatedAt = new Date;
+        this.updatedAt = new Date();
     }
     next();
 });

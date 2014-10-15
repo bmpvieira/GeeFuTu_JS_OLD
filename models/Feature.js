@@ -1,4 +1,4 @@
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 
 var featureSchema = mongoose.Schema({
     seqid: {type: String, required: true},
@@ -35,9 +35,9 @@ var featureSchema = mongoose.Schema({
 //
 featureSchema.pre('save', function (next) {
     if (!this.createdAt) {
-        this.createdAt = new Date;
+        this.createdAt = new Date();
     } else {
-        this.updatedAt = new Date;
+        this.updatedAt = new Date();
     }
     next();
 });

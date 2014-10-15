@@ -1,5 +1,4 @@
 var User = require('../models/User');
-var Organism = require('../models/Organism');
 
 module.exports.controller = function (app) {
 
