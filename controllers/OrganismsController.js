@@ -1,7 +1,7 @@
 var Organism = require('../models/Organism');
 var User = require('../models/User');
 var AuthController = require('./AuthController');
-var Utils = require('../lib/Utils');
+var Util = require('../lib/UTIL');
 var marked = require('marked');
 
 module.exports.controller = function (app) {
@@ -16,33 +16,33 @@ module.exports.controller = function (app) {
         User.getUserByUsername(username, function (err, user) {
 
             if (err) {
-                return res.render('error', {message: err});
+                return Util.renderError(res, err);
             }
 
             if (!user) {
-                return res.render('error', {message: 'user does not exist'});
+                return Util.renderError(res, 'user does not exist');
             }
 
             Organism.findByUserAndLocalName(user, organism, function (err, org) {
 
                 if (err) { //error
-                    return res.send(err);
+                    return Util.renderError(res, err);
                 }
 
                 if (!org) { //no matches
-                    return Utils.checkError(res, 'cound not find project');
+                    return Util.renderError(res, 'cound not find project');
                 }
-                var marked = ('I am using __markdown__.');
+                //var marked = ('I am using __markdown__.');
 
                 if (org.hidden) { //hidden from public
                     if (!currentUser) {//no user signed in
-                        return Utils.checkError(res, 'This is private');
+                        return Util.renderError(res, 'This is private');
                     } else { //    user is signed in
                         org.canView(user, function (bool) {
                             if (bool) {
-                                return res.render('organisms/show', {organism: org});
+                                return Util.renderError(res, err);
                             } else {
-                                return Utils.checkError(res, 'This is private');
+                                return Util.renderError(res, 'This is private');
                             }
                         });
                     }
@@ -61,21 +61,18 @@ module.exports.controller = function (app) {
         User.getUserByUsername(username, function (err, user) {
 
             if (err) {
-                return Utils.checkError(res, err);
+                return Util.checkError(res, err);
             }
 
             if (!user) {
-                return Utils.checkError(res, 'We could not find you!?');
+                return Util.checkError(res, 'We could not find you!?');
             }
 
             Organism.findByUserAndLocalName(user, organism, function (err, org) {
 
                 if (err) {
-                    return Utils.checkError(res, err);
+                    return Util.checkError(res, err);
                 }
-
-
-
             });
 
         });
@@ -119,10 +116,10 @@ module.exports.controller = function (app) {
         Organism.checkIsExistsByLocalName(localName, function (err, exists) {
 
             if (err) {
-                return res.render('error', {message: err});
+                return Util.renderError(res, err);
             }
             if (exists) {
-                return res.render('error', {message: 'You already have a Organism called ' + localName});
+                return Util.renderError(res, 'You already have a Organism called ' + localName);
             }
 
 
@@ -147,7 +144,7 @@ module.exports.controller = function (app) {
             });
             org.save(function (err, organism) {
                 if (err) {
-                    return res.send(err);
+                    return Util.renderError(res, err);
                 }
                 return res.redirect('/' + ownerUsername + '/' + localName);
             });

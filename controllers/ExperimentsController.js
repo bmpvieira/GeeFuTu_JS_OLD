@@ -2,22 +2,23 @@ var Experiment = require('../models/Experiment');
 var Genome = require('../models/Genome');
 var GFF = require('../lib/gff3');
 var Feature = require('../models/Feature');
-var async = require('async');
 var AuthController = require('./AuthController');
+var Util = require('../lib/UTIL');
 
 module.exports.controller = function (app) {
 
     app.get('/:username/:organism/experiments', function (req, res) {
 
-        var username = req.param("username").toLowerCase();
-        var organism = req.param("organism").toLowerCase();
+        //var username = req.param("username").toLowerCase();
+        //var organism = req.param("organism").toLowerCase();
 
         res.send('TODO');
     });
+
     app.get('/:username/:organism/experiments/add', AuthController.isAuthenticated, function (req, res){
         Genome.findAll(function (err, gens) {
             if (err) {
-                return res.render('error', {message: err});
+                return Util.renderError(res, err);
             }
             return res.render('experiments/new', {
                 genomes: gens
@@ -46,7 +47,7 @@ module.exports.controller = function (app) {
 
         experiment.save(function (err) {
             if (err) {
-                return res.render('error', {message: err});
+                return Util.renderError(res, err);
             } else {
                 console.log('saved experiment');
             }
@@ -66,9 +67,9 @@ module.exports.controller = function (app) {
                 experiment: experiment._id
             });
 
-            feat.save(function (err, r) {
+            feat.save(function (err) {
                 if (err) {
-                    return res.render('error', {message: err});
+                    return Util.renderError(res, err);
                 }
             });
         });
@@ -77,15 +78,15 @@ module.exports.controller = function (app) {
 
     app.get('/:username/:organism/experiments/:id', function (req, res) {
         var id = req.param("id");
-        var genome = null;
+        //var genome = null;
 
         Experiment.findOne({_id: id}, function (err, experiment) {
             if (err) {
-                res.send(err);
+                return Util.renderError(res, err);
             } else {
                 Genome.findOne({_id: experiment.genome}, function (err, genome) {
                     if (err) {
-                        return res.render('error', {message: err});
+                        return Util.renderError(res, err);
                     } else {
                         return res.render('experiments/show', {experiment: experiment, genome: genome});
                     }
