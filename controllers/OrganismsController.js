@@ -78,23 +78,7 @@ module.exports.controller = function (app) {
         });
     });
 
-    //app.get('/organisms', function (req, res) {
-    //
-    //    if (req.isAuthenticated()) {
-    //        Organism.findByUser(req.user._id, function (err, orgs) {
-    //            if (err) return res.send(err);
-    //            return res.render('organisms/index', {
-    //                organisms: orgs
-    //            });
-    //        });
-    //    } else {
-    //        res.render('organisms/index', {organisms: []});
-    //    }
-    //
-    //
-    //});
-
-    app.get('/new', function (req, res) {
+    app.get('/new', AuthController.isAuthenticated, function (req, res) {
         return res.render('organisms/new');
     });
 
@@ -150,9 +134,4 @@ module.exports.controller = function (app) {
             });
         });
     });
-
-    //app.get('/organisms/show', function (req, res) {
-    //    return res.render('organisms/show');
-    //});
-
 };
