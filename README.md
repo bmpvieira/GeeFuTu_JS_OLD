@@ -49,8 +49,8 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 $ npm install
 $ bower install
 $ gulp
+$ gulp config-file
 $ cd public/components/dalliance && npm install && gulp
-$ cp config-example.json config.json
 ```
 
 ## Contributors

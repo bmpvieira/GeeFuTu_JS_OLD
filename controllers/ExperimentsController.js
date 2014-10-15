@@ -15,7 +15,7 @@ module.exports.controller = function (app) {
         res.send('TODO');
     });
 
-    app.get('/:username/:organism/experiments/add', AuthController.isAuthenticated, function (req, res){
+    app.get('/:username/:organism/experiments/add', AuthController.isAuthenticated, function (req, res) {
         Genome.findAll(function (err, gens) {
             if (err) {
                 return Util.renderError(res, err);
@@ -35,6 +35,7 @@ module.exports.controller = function (app) {
         var meta = req.body.meta;
         var file = req.files.file;
         var findParents = req.body.findParents;
+        var type = req.body.type;
 
         var experiment = new Experiment({
             name: name,
@@ -42,38 +43,48 @@ module.exports.controller = function (app) {
             file: file.path,
             genome: genome,
             meta: meta,
-            findParents: findParents
+            findParents: findParents,
+            type: type
         });
 
         experiment.save(function (err) {
             if (err) {
                 return Util.renderError(res, err);
             } else {
-                console.log('saved experiment');
+                //console.log('saved experiment');
             }
         });
 
-        GFF.read(file.path, function (feature) {
-            var feat = new Feature({
-                seqid: feature.seqid,
-                source: feature.source,
-                type: feature.type,
-                start: feature.start,
-                end: feature.end,
-                score: feature.score,
-                strand: feature.strand,
-                phase: feature.phase,
-                attributes: feature.attributes,
-                experiment: experiment._id
-            });
+        //TODO where to put this?
 
-            feat.save(function (err) {
-                if (err) {
-                    return Util.renderError(res, err);
-                }
-            });
+        experiment.processFile(experiment, function (err) {
+            if(err){
+                return Util.renderError(res, err);
+            }
+            return res.redirect('/experiments');
         });
-        return res.redirect('/experiments');
+
+        //GFF.read(file.path, function (feature) {
+        //    var feat = new Feature({
+        //        seqid: feature.seqid,
+        //        source: feature.source,
+        //        type: feature.type,
+        //        start: feature.start,
+        //        end: feature.end,
+        //        score: feature.score,
+        //        strand: feature.strand,
+        //        phase: feature.phase,
+        //        attributes: feature.attributes,
+        //        experiment: experiment._id
+        //    });
+        //
+        //    feat.save(function (err) {
+        //        if (err) {
+        //            return Util.renderError(res, err);
+        //        }
+        //    });
+        //});
+        //return res.redirect('/experiments');
     });
 
     app.get('/:username/:organism/experiments/:id', function (req, res) {
