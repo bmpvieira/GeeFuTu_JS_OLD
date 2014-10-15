@@ -6,16 +6,12 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
-var chalk = require('chalk');
 var async = require('async');
-var util = require('./lib/UTIL')
+var util = require('./lib/UTIL');
 var fs = require('fs');
 var flash = require('connect-flash');
 var app = express();
 var dbURI = 'mongodb://localhost/geefutu';
-
-var User = require('./models/User');
-var Organism = require('./models/Organism');
 
 var PORT = process.env.PORT || 8080;
 
@@ -40,7 +36,6 @@ var getConfig = function (done) {
 
 var setupMiddleware = function (done) {
     if (!inDevelopment) {
-        //log all requests
         app.use(morgan('dev'));
     }
 
@@ -80,7 +75,7 @@ var setupMiddleware = function (done) {
     app.set('views', __dirname + '/views');
 
     var appendLocalsToUseInViews = function (req, res, next) {
-        if (req.user != null && req.user.username != null) {
+        if (req.user !== null && req.user.username !== null) {
             res.locals.userName = req.user.username;
 
         }
@@ -190,7 +185,7 @@ async.series([
         mongoConnection(callback);
     },
     function (callback) {
-        startApp(callback)
+        startApp(callback);
     }
 ]);
 
