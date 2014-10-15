@@ -34,16 +34,7 @@ var getConfig = function (done) {
     done();
 };
 
-var setupMiddleware = function (done) {
-    if (!inDevelopment) {
-        app.use(morgan('dev'));
-    }
-
-    app.use(cookieParser());
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: false}));
-    app.use(multer({dest: './uploads/'}));
-
+var genSecret = function(){
     var secret = "", rand;
     for (var i = 0; i < 36; i++) {
         rand = Math.floor(Math.random() * 15);
@@ -55,9 +46,21 @@ var setupMiddleware = function (done) {
             secret += String.fromCharCode(97 + (rand - 10));
         }
     }
+    return secret;
+};
+
+var setupMiddleware = function (done) {
+    if (!inDevelopment) {
+        app.use(morgan('dev'));
+    }
+    app.use(cookieParser());
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended: false}));
+    app.use(multer({dest: './uploads/'}));
+
 
     app.use(session({
-        secret: secret,
+        secret: genSecret(),
         cookie: {
             expires: false
         },
