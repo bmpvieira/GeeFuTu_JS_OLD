@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var BinaryExperimentFile = require('../lib/BinaryExperimentFile');
+var BinaryExperimentFile = require('../lib/binaryExperimentFile');
 var Feature = require('./Feature');
 var GFF = require('../lib/gff3');
 

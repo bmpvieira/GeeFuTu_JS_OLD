@@ -16,16 +16,20 @@ var userSchema = mongoose.Schema({
 
 userSchema.pre('save', function (next) {
 
-  if (!this.createdAt) {
-      this.createdAt = new Date();
-  } else {
-      this.updatedAt = new Date();
-  }
+    if (!this.createdAt) {
+        this.createdAt = new Date();
+    } else {
+        this.updatedAt = new Date();
+    }
 
     var user = this;
-    if (!user.isModified('password')){ rturn next()};
+    if (!user.isModified('password')) {
+        return next()
+    }
     bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
-        if (err) {return next(err)};
+        if (err) {
+            return next(err)
+        }
         bcrypt.hash(user.password, salt, function (err, hash) {
             if (err) return next(err);
             user.password = hash;

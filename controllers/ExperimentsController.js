@@ -3,7 +3,7 @@ var Genome = require('../models/Genome');
 // var GFF = require('../lib/Gff3');
 // var Feature = require('../models/Feature');
 var AuthController = require('./AuthController');
-var Util = require('../lib/Util');
+var Util = require('../lib/util');
 
 module.exports.controller = function (app) {
 
