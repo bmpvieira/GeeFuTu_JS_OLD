@@ -3,7 +3,7 @@ var should = require('chai').should();
 
 
 describe('GFF3', function () {
-    var GFF = require('../lib/Gff3');
+    var GFF = require('../lib/gff3');
     var Feature = require('../models/Feature');
 
     describe('import', function (done) {

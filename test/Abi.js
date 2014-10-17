@@ -54,6 +54,9 @@ describe('Abi', function () {
         it('should return array of directories', function (done) {
 
             var cb = function (err, data) {
+
+                //console.log(data);
+
                 expect(err).to.eq(null);
                 data.should.have.length(entryDir.numElements);
                 done();
