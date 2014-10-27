@@ -27,4 +27,4 @@ module.exports.controller = function (app) {
     app.get('/us', function (req, res) {
         res.render('us');
     });
-}
+};

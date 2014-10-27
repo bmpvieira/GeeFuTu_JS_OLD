@@ -10,9 +10,16 @@ var userSchema = mongoose.Schema({
     username: {type: String, required: true, unique: true},
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
+    gravatarURL: {type: String, default: ''},
     createdAt: Date,
     updatedAt: Date
 });
+
+var getGravatarURL = function (cb) {
+    var url = gravatar.url(this.email, {s: '200', r: 'pg', d: '404'});
+    cb(url);
+};
+
 
 userSchema.pre('save', function (next) {
 
@@ -23,6 +30,13 @@ userSchema.pre('save', function (next) {
     }
 
     var user = this;
+
+    getGravatarURL(function (url) {
+        user.gravatarURL = url;
+        console.log(url);
+    });
+
+
     if (!user.isModified('password')) {
         return next()
     }
@@ -37,6 +51,7 @@ userSchema.pre('save', function (next) {
         });
     });
 });
+
 
 userSchema.statics.getUserByUsername = function (username, cb) {
     User.findOne({username: username.toLowerCase()}).exec(cb);
@@ -76,12 +91,7 @@ userSchema.statics.canHaveUsername = function (username, cb) {
     });
 };
 
-userSchema.methods.getGravatar = function (cb) {
-    var url = gravatar.url(this.email, {s: '200', r: 'pg', d: '404'});
-    console.log(this.email);
-    console.log(url);
-    cb(url);
-};
+userSchema.methods.getGravatarUrl = getGravatarURL;
 
 // Password verification
 userSchema.methods.comparePassword = function (candidatePassword, cb) {

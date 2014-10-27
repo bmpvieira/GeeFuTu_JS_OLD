@@ -15,12 +15,12 @@ module.exports.controller = function (app) {
                 return res.render('error', {message: 'user does not exist'});
             }
 
-            user.getGravatar(function (url) {
-                if (err) {
-                    return res.render('error', {message: err});
-                }
-                return res.render('user/index', {user: user, gravatar: url});
-            });
+            //user.getGravatarUrl(function (url) {
+            //    user.gravatarURL = url;
+            //    user.save();
+            //});
+
+            return res.render('user/index', {user: user});
         });
     });
 
