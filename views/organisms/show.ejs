@@ -1,0 +1,37 @@
+<% include ../head %>
+
+<div class="container pt">
+
+    <h2>
+        <a href="/<%- username %>"><%- username %></a>
+        /
+        <a href="/<%- username %>/<%- organism.localName %>"><%- organism.localName %></a>
+    </h2>
+
+
+    <!--<a href="/<%- username %>/<%- organism.localName %>/experiments" class="btn btn-default">Experiments</a>-->
+    <a href="/<%- username %>/<%- organism.localName %>/clone" class="btn btn-default">Clone / Fork</a>
+    <a href="/<%- username %>/<%- organism.localName %>/edit" class="btn btn-default">Edit</a>
+
+
+    <h3>Genomes</h3>
+    <a href="/<%- username %>/<%- organism.localName %>/genomes/add" class="btn btn-default">Add Genome</a>
+
+    <% genomes.forEach(function(genome){ %>
+    <h4><a href="/<%- username %>/<%- organism.localName %>/<%- genome.buildVersion %>"><%- genome.buildVersion %></a></h4>
+    <% }); %>
+
+
+    <% if(username){ %>
+    <h3>Readme</h3>
+
+    <div class="markdown">
+        <%- readme %>
+        <!--<div id="epiceditor"></div>-->
+    </div>
+    <% } %>
+
+</div>
+
+
+<% include ../foot %>
