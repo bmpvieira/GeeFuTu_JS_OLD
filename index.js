@@ -119,7 +119,6 @@ var loadRoutes = function (done) {
     var GenomesController = require('./controllers/GenomesController');
     GenomesController.controller(app);
 
-
     var OrganismsController = require('./controllers/OrganismsController');
     OrganismsController.controller(app);
 

@@ -2,9 +2,10 @@
 
 <div class="container pt pb">
 
-    <h2>Dash</h2>
+    <h2 class="mb">Dash</h2>
 
     <h3>Organisms</h3>
+    <a href="/new" class="btn btn-default">Add Organism</a>
     <% organisms.forEach(function(org){ %>
     <h4><a href="/<%- user.username %>/<%- org.localName %>"><%- org.localName %></a></h4>
     <% }); %>

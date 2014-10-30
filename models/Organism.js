@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var _ = require('lodash');
+var Genome = require('./Genome');
 
 var organismSchema = mongoose.Schema({
     localName: {type: String, required: true},
@@ -16,18 +17,14 @@ var organismSchema = mongoose.Schema({
     viewers: [String],
     editors: [String],
     admins: [String],
-    readme: String
+    readme: {type: String, default: ''}
 });
 
 organismSchema.statics.findByUserAndLocalName = function (user, local, cb) {
-
-    console.log(user);
-
     Organism.findOne({
-        owner: user._id,
+        owner: user.username,
         localName: local
     }).exec(cb);
-
 };
 
 organismSchema.statics.checkIsExistsByLocalName = function (localName, cb) {
@@ -45,21 +42,28 @@ organismSchema.statics.checkIsExistsByLocalName = function (localName, cb) {
 organismSchema.statics.findByUser = function (user, cb) {
     Organism.find({
         $or: [
-            {owner: user},
-            {viewers: user},
-            {editors: user},
-            {admins: user}
+            {owner: user.username},
+            {viewers: user.username},
+            {editors: user.username},
+            {admins: user.username}
         ]
     }).exec(cb);
 };
 
+organismSchema.methods.getGenomes = function (cb) {
+    Genome.find({organism: this._id}).exec(cb);
+}
+
+
 organismSchema.methods.canView = function (user, cb) {
 
-    var userID = user._id;
+    var username = user.username;
+    cb(this.owner == username || _.contains(this.viewers, username) || _.contains(this.editors, username) || _.containes(this.admins, username)); //callback with result of checks
+};
 
-    console.log('user id', userID);
-
-    cb(this.owner == userID || _.contains(this.viewers, userID) || _.contains(this.editors, userID) || _.containes(this.admins, userID)); //callback with result of checks
+organismSchema.methods.canEdit = function (user, cb) {
+    var username = user.username;
+    cb(this.owner == username || _.contains(this.editors, username) || _.containes(this.admins, username)); //callback with result of checks
 };
 
 organismSchema.pre('save', function (next) {

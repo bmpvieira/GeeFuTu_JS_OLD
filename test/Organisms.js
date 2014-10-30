@@ -1,4 +1,4 @@
-var expect = require('chai').expect;
+//var expect = require('chai').expect;
 var should = require('chai').should();
 var superagent = require('superagent');
 
@@ -16,7 +16,7 @@ describe('OrganismsController', function () {
                 superagent
                     .get(baseURL + '/testuser/testorganism')
                     .end(function (e, res) {
-                        expect(e).to.eql(null);
+                        should.not.exist(e);
                         res.status.should.eq(404);
                         done();
                     });
@@ -34,7 +34,7 @@ describe('OrganismsController', function () {
                         redirected = true;
                     })
                     .end(function (e, res) {
-                        expect(e).to.eql(null);
+                        should.not.exist(e);
                         res.status.should.eq(200);
                         redirected.should.eq(true);
                         done();
@@ -53,7 +53,7 @@ describe('OrganismsController', function () {
                         redirected = true;
                     })
                     .end(function (e, res) {
-                        expect(e).to.eql(null);
+                        should.not.exist(e);
                         res.status.should.eq(200);
                         redirected.should.eq(true);
                         done();
@@ -81,7 +81,7 @@ describe('OrganismsController', function () {
                     .post(baseURL + '/new')
                     .send(newOrg)
                     .end(function (e, res) {
-                        expect(e).to.eql(null);
+                        should.not.exist(e);
                         res.status.should.eq(200);
                         done();
                     });

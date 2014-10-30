@@ -10,7 +10,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Organism</th>
             <th>Build version</th>
             <th>Description</th>
 
@@ -19,11 +18,10 @@
         <tbody>
         <% genomes.forEach(function(genome){ %>
         <tr>
-            <td><%- genome.organism %></td>
             <td><%- genome.buildVersion %></td>
             <td><%- genome.description %></td>
         </tr>
-        <% });%>
+        <% }); %>
         </tbody>
     </table>
     <% } %>

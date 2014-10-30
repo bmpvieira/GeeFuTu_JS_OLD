@@ -1,5 +1,4 @@
 var should = require('chai').should();
-var expect = require('chai').expect;
 var ABI = require('../lib/abi');
 var _ = require('lodash');
 
@@ -33,7 +32,7 @@ describe('Abi', function () {
 
         it('should have a version eq 101', function (done) {
             var cb = function (err, data) {
-                expect(err).to.eq(null);
+                should.not.exist(err);
                 data.should.eq(101);
                 done();
             };
@@ -43,7 +42,7 @@ describe('Abi', function () {
         it('should have a valid entry directory', function (done) {
 
             var cb = function (err, data) {
-                expect(err).to.eq(null);
+                should.not.exist(err);
                 _.isEqual(data, entryDir).should.eq(true);
                 done();
             };
@@ -57,7 +56,7 @@ describe('Abi', function () {
 
                 //console.log(data);
 
-                expect(err).to.eq(null);
+                should.not.exist(err);
                 data.should.have.length(entryDir.numElements);
                 done();
             };

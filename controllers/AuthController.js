@@ -1,17 +1,78 @@
 var User = require('../models/User');
+var Organism = require('../models/Organism');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var Util = require('../lib/util');
 
 
 module.exports.controller = function (app) {
 
+    this.canView = function (req, res, next) {
+        var username = req.param("username").toLowerCase();
+        var organism = req.param("organism").toLowerCase();
+        if (!username || !organism) {
+            return res.redirect('/signin');
+        }
+        User.getUserByUsername(username, function (err, user) {
+            if (err) {
+                return Util.renderError(res, err);
+            }
+            if (!user) {
+                return Util.renderError(res, 'user does not exist');
+            }
+            Organism.findByUserAndLocalName(user, organism, function (err, org) {
+                if (err) {
+                    return Util.renderError(res, err);
+                }
+                if (org.hidden) {
+                    org.canView(user, function (canView) {
+                        if (canView) {
+                            return next();
+                        } else {
+                            return res.redirect('/signin');
+                        }
+                    })
+                } else {
+                    return next();
+                }
+            });
+        });
+    };
+
+    this.canEdit = function (req, res, next) {
+        var username = req.param("username").toLowerCase();
+        var organism = req.param("organism").toLowerCase();
+        if (!username || !organism) {
+            return res.redirect('/signin');
+        }
+        User.getUserByUsername(username, function (err, user) {
+            if (err) {
+                return Util.renderError(res, err);
+            }
+            if (!user) {
+                return Util.renderError(res, 'user does not exist');
+            }
+            Organism.findByUserAndLocalName(user, organism, function (err, org) {
+                if (err) {
+                    return Util.renderError(res, err);
+                }
+                org.canEdit(user, function (canEdit) {
+                    if (canEdit) {
+                        return next();
+                    } else {
+                        return res.redirect('/signin');
+                    }
+                });
+
+            });
+        });
+    };
 
     this.isAuthenticated = function (req, res, next) {
-
         if (req.isAuthenticated()) {
             return next();
         }
-        res.redirect('/signin');
+        return res.redirect('/signin');
     };
 
 
@@ -20,8 +81,12 @@ module.exports.controller = function (app) {
     });
     passport.deserializeUser(function (id, done) {
         User.findById(id, function (err, user) {
-            if (!err) {done(null, user);}
-            else {done(err, null);}
+            if (!err) {
+                done(null, user);
+            }
+            else {
+                done(err, null);
+            }
         });
     });
 
@@ -84,6 +149,10 @@ module.exports.controller = function (app) {
         var email = req.body.email;
         var password = req.body.password;
         return res.render('auth/signup', {username: username, email: email, password: password});
+    });
+
+    app.get('/join', function (req, res) {
+        res.redirect('/signup');
     });
 
     app.post('/join', function (req, res) {

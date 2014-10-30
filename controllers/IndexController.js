@@ -11,7 +11,7 @@ module.exports.controller = function (app) {
                 if (err) {
                     return res.render('error', {message: err});
                 }
-                Organism.findByUser(user._id, function (err, orgs) {
+                Organism.findByUser(user, function (err, orgs) {
                     if (err) {
                         return res.render('error', {message: err});
                     }

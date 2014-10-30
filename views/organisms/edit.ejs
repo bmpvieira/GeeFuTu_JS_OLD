@@ -1,0 +1,48 @@
+<% include ../head %>
+
+<div class="container pt">
+
+    <h2>
+        <a href="/<%- username %>"><%- username %></a>
+        /
+        <a href="/<%- username %>/<%- organism.localName %>"><%- organism.localName %></a>
+    </h2>
+
+    <div id="epiceditor" class="markdown"></div>
+    <button onClick="save();" class="btn btn-lg btn-warning mt">Save</button>
+</div>
+
+
+<% if(username){ %>
+<script src="/components/EpicEditor/epiceditor/js/epiceditor.min.js"></script>
+<script>
+    var readme = "<%- organism.readme %>";
+    var md = decodeURIComponent(readme);
+    var editor = new EpicEditor({
+        basePath: '/components/EpicEditor/epiceditor/',
+        autogrow: true,
+        useNativeFullscreen: false
+    }).load();
+    editor.importFile(null, md);
+
+    var save = function () {
+        var md = encodeURIComponent(editor.exportFile());
+
+        var organism = '<%- organism.localName %>';
+        var post = {organism: organism, markdown: md};
+
+
+        $.ajax({
+            type: "POST",
+            url: '/<%- username %>/<%- organism.localName %>/edit',
+            data: post,
+            success: function (resp, stat) {
+                console.log('saved, redirect now');
+                window.location.href = '/<%- username %>/<%- organism.localName %>';
+            },
+        });
+
+    }
+</script>
+<% } %>
+<% include ../foot %>

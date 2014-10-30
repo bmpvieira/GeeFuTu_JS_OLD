@@ -1,4 +1,4 @@
-var expect = require('chai').expect;
+//var expect = require('chai').expect;
 var should = require('chai').should();
 var superagent = require('superagent');
 
@@ -17,7 +17,7 @@ describe('IndexController', function () {
                 superagent
                     .get(baseURL + '/')
                     .end(function (e, res) {
-                        expect(e).to.eql(null);
+                        should.not.exist(e);
                         res.status.should.eq(200);
                         done();
                     });
@@ -31,7 +31,7 @@ describe('IndexController', function () {
                 superagent
                     .get(baseURL + '/us')
                     .end(function (e, res) {
-                        expect(e).to.eql(null);
+                        should.not.exist(e);
                         res.status.should.eq(200);
                         done();
                     });

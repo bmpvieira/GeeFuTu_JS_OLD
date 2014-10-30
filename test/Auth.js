@@ -1,4 +1,4 @@
-var expect = require('chai').expect;
+//var expect = require('chai').expect;
 var should = require('chai').should();
 var superagent = require('superagent');
 
@@ -35,7 +35,7 @@ describe('AuthController', function () {
             superagent
                 .get(baseURL + '/signup')
                 .end(function (e, res) {
-                    expect(e).to.eql(null);
+                    should.not.exist(e);
                     res.status.should.eq(200);
                     done();
                 });
@@ -52,7 +52,7 @@ describe('AuthController', function () {
                     email: testUser.email
                 })
                 .end(function (e, res) {
-                    expect(e).to.eql(null);
+                    should.not.exist(e);
                     res.status.should.eq(200);
                     done();
                 });
@@ -72,16 +72,16 @@ describe('AuthController', function () {
                 })
                 .end(function (e, res) {
 
-                    expect(e).to.eql(null);
+                    should.not.exist(e);
                     res.status.should.eq(200);
 
                     //TODO check mongo for user
                     User.findOne({username: testUser.username, email: testUser.email}, function (err, user) {
 
                         if (err) {
-                            expect(err).to.eql(null);
+                            should.not.exist(e);
                         }
-                        expect(user).not.to.eql(null);
+                        should.exist(user);
                         done();
                     });
                 });
@@ -97,7 +97,7 @@ describe('AuthController', function () {
             superagent
                 .get(baseURL + '/signin')
                 .end(function (e, res) {
-                    expect(e).to.eql(null);
+                    should.not.exist(e);
                     res.status.should.eq(200);
                     done();
                 });
@@ -118,7 +118,7 @@ describe('AuthController', function () {
                         redirected = true;
                     })
                     .end(function (e, res) {
-                        expect(e).to.eql(null);
+                        should.not.exist(e);
                         redirected.should.eq(true);
                         res.status.should.eq(200);
                         done();
@@ -138,7 +138,7 @@ describe('AuthController', function () {
                         redirected = true;
                     })
                     .end(function (e, res) {
-                        expect(e).to.eql(null);
+                        should.not.exist(e);
                         redirected.should.eq(true);
                         res.status.should.eq(200);
                         done();

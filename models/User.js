@@ -4,7 +4,7 @@ var gravatar = require('gravatar');
 var SALT_WORK_FACTOR = 10;
 var _ = require('lodash');
 
-var RESERVED_NAMED = ['us', 'about', 'signup', 'signin', 'join', 'wookoouk', 'help'];
+var RESERVED_NAMED = ['us', 'about', 'signup', 'signin', 'join', 'help'];
 
 var userSchema = mongoose.Schema({
     username: {type: String, required: true, unique: true},
@@ -16,7 +16,7 @@ var userSchema = mongoose.Schema({
 });
 
 var getGravatarURL = function (cb) {
-    var url = gravatar.url(this.email, {s: '200', r: 'pg', d: '404'});
+    var url = gravatar.url(this.email, {s: '200'});
     cb(url);
 };
 
@@ -33,21 +33,19 @@ userSchema.pre('save', function (next) {
 
     getGravatarURL(function (url) {
         user.gravatarURL = url;
-        console.log(url);
-    });
 
-
-    if (!user.isModified('password')) {
-        return next()
-    }
-    bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
-        if (err) {
-            return next(err)
+        if (!user.isModified('password')) {
+            return next()
         }
-        bcrypt.hash(user.password, salt, function (err, hash) {
-            if (err) return next(err);
-            user.password = hash;
-            next();
+        bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+            if (err) {
+                return next(err)
+            }
+            bcrypt.hash(user.password, salt, function (err, hash) {
+                if (err) return next(err);
+                user.password = hash;
+                next();
+            });
         });
     });
 });
