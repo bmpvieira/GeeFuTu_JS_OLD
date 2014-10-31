@@ -53,6 +53,18 @@ $ gulp config-file
 $ cd public/components/dalliance && npm install && gulp
 ```
 
+## Start
+
+For development I suggest using nodemon, this will auto reload on changes.
+```sh
+nodemon app
+```
+
+You can start the app using node
+```sh
+node app
+```
+
 ## Contributors
 
 Martin Page <wookoouk@gmail.com>    
