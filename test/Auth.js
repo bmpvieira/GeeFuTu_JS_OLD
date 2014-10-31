@@ -16,7 +16,7 @@ describe('AuthController', function () {
 
 
     before(function () {
-        var app = require('../index');
+        var app = require('../app');
 
     });
 
