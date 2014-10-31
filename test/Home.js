@@ -7,7 +7,7 @@ var baseURL = 'http://localhost:8080';
 describe('IndexController', function () {
 
     before(function () {
-        var app = require('../index');
+        var app = require('../app');
     });
 
 
