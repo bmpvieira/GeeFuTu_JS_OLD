@@ -7,7 +7,7 @@ var baseURL = 'http://localhost:8080';
 describe('OrganismsController', function () {
 
     before(function () {
-        var app = require('../index');
+        var app = require('../app');
     });
 
     describe('get /bad-user/bad-organism', function () {
