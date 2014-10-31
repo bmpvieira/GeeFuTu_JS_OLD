@@ -15,7 +15,7 @@ var dbURI = 'mongodb://localhost/geefutu';
 
 var path = require('path');
 global.appRoot = path.resolve(__dirname);
-var util = require(appRoot+'/lib/util');
+var util = require(appRoot+'/lib/util.js');
 
 var PORT = process.env.PORT || 8080;
 
