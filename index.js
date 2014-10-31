@@ -173,6 +173,14 @@ var startApp = function (done) {
     done();
 };
 
+var initSocketIO = function(done){
+    var io = require('socket.io')(app);
+    io.on('connection', function(socket){
+        console.log('a user connected');
+    });
+
+};
+
 async.series([
     function (callback) {
         getConfig(callback);
@@ -185,6 +193,9 @@ async.series([
     },
     function (callback) {
         mongoConnection(callback);
+    },
+    function (callback) {
+        initSocketIO(callback);
     },
     function (callback) {
         startApp(callback);
