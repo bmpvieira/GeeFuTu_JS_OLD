@@ -13,9 +13,7 @@ var flash = require('connect-flash');
 var app = express();
 var dbURI = 'mongodb://localhost/geefutu';
 
-var path = require('path');
-global.appRoot = path.resolve(__dirname);
-var util = require(appRoot+'/lib/util.js');
+var util = require('./lib/util');
 
 var PORT = process.env.PORT || 8080;
 
