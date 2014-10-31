@@ -7,11 +7,15 @@ var multer = require('multer');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var async = require('async');
-var util = require('lib/util');
+
 var fs = require('fs');
 var flash = require('connect-flash');
 var app = express();
 var dbURI = 'mongodb://localhost/geefutu';
+
+var path = require('path');
+global.appRoot = path.resolve(__dirname);
+var util = require(appRoot+'/lib/util');
 
 var PORT = process.env.PORT || 8080;
 
