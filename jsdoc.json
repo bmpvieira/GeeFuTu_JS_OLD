@@ -1,0 +1,10 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "source": {
+    "include": ["*.js", "controllers/*.js", "lib/*.js", "models/*.js", "public/js/*.js"]
+  },
+  "plugins": [ "plugins/markdown" ],
+  "templates": {}
+}

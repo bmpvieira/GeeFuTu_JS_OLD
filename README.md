@@ -65,6 +65,11 @@ You can start the app using node
 node app
 ```
 
+## Generate Docs
+```sh
+jsdoc -c jsdoc.json -d docs
+```
+
 ## Contributors
 
 Martin Page <wookoouk@gmail.com>    
