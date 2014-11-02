@@ -67,11 +67,11 @@ node app
 
 ## Generate Docs
 ```sh
-jsdoc -c jsdoc.json -d docs
+jsdoc -c jsdoc.json -d docs -r
 ```
 
 ## Contributors
 
-Martin Page <wookoouk@gmail.com>    
-Shyam Rallapalli <Ghanasyam.Rallapalli@tsl.ac.uk>    
-Dan Maclean <Dan.MacLean@tsl.ac.uk>    
+Martin Page <wookoouk@gmail.com>
+Shyam Rallapalli <Ghanasyam.Rallapalli@tsl.ac.uk>
+Dan Maclean <Dan.MacLean@tsl.ac.uk>

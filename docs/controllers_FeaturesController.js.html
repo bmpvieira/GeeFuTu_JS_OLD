@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Index</title>
+    <title>JSDoc: Source: controllers/FeaturesController.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,42 @@
 
 <div id="main">
 
-    <h1 class="page-title">Index</h1>
+    <h1 class="page-title">Source: controllers/FeaturesController.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var AuthController = require('./AuthController');
 
+/**
+ *
+ * @param app - express app
+ */
+module.exports.controller = function (app) {
 
-    <h3> </h3>
+    app.get('/:username/:organism/features', function (req, res) {
+        return res.render('features/index');
+    });
 
+    app.get('/:username/:organism/features/new', AuthController.isAuthenticated, function (req, res) {
+        //if (req.isUnauthenticated()) {
+        //    return res.redirect('/signin');
+        //}
+        return res.render('features/new');
+    });
 
+    app.get('/:username/:organism/features/show', function (req, res) {
+        return res.render('features/show');
+    });
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+};
+</code></pre>
+        </article>
+    </section>
 
 
 
