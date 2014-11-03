@@ -34,7 +34,7 @@
             <label for="genome">Genome</label>
             <select class="form-control" id="genome" name="genome">
                 <% genomes.forEach(function(gen){ %>
-                <option value="<%- gen._id %>"><%- gen.buildVersion %></option>
+                <option value="<%- gen._id %>"><%- gen.name %></option>
                 <% }); %>
             </select>
         </div>

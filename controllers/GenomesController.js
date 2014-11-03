@@ -33,41 +33,54 @@ module.exports.controller = function (app) {
                         return Util.renderError(res, err);
                     }
                     res.render('genomes/index', {
-                        genomes: genomes
+                        organism: org,
+                        genomes: genomes,
+                        user: user
                     });
                 });
             });
         });
+    });
 
+    app.get('/:username/:organism/:genome', AuthController.canView, function (req, res) {
+        var username = req.param("username").toLowerCase();
+        var organism = req.param("organism").toLowerCase();
+        var genomeName = req.param("genome").toLowerCase();
 
-        //Genome.findAll(function (err, genomes) {
-        //    if (err) {
-        //        return Util.renderError(res, err);
-        //    }
-        //
-        //    var getOrganism = function (genome, callback) {
-        //        Organism.findOne({localName: genome.organism}, function (err, org) {
-        //            if (err) {
-        //                rreturn
-        //                Util.renderError(res, err);
-        //            }
-        //            genome.organism = org.localName;
-        //            callback();
-        //        });
-        //    };
-        //
-        //    var returnResult = function () {
-        //        if (err) {
-        //            return Util.renderError(res, err);
-        //        }
-        //        res.render('genomes/index', {
-        //            genomes: genomes
-        //        });
-        //    };
-        //
-        //
-        //    async.each(genomes, getOrganism, returnResult);
-        //});
+        User.getUserByUsername(username, function (err, user) {
+            if (err) {
+                return Util.renderError(res, err);
+            }
+
+            if (!user) {
+                return Util.renderError(res, 'user does not exist');
+            }
+
+            Organism.findByUserAndLocalName(user, organism, function (err, org) {
+                if (err) {
+                    return res.render('error', {message: err});
+                }
+
+                org.getGenomeByName(genomeName, function (err, genome) {
+                    if (err) {
+                        return Util.renderError(res, err);
+                    }
+
+                    genome.getExperiments(function (err, experiments) {
+                        if (err) {
+                            return Util.renderError(res, err);
+                        }
+                        console.log(genome);
+                        res.render('genomes/show', {
+                            organism: org,
+                            genome: genome,
+                            user: user,
+                            experiments: experiments
+                        });
+                    });
+                });
+            });
+        });
     });
 
     app.get('/:username/:organism/genomes/add', AuthController.isAuthenticated, function (req, res) {
@@ -94,7 +107,7 @@ module.exports.controller = function (app) {
                 return res.render('genomes/new', {
                     organism: org,
                     user: user,
-                    organism: organism
+//                    organism: organism
                 });
             });
 
@@ -107,7 +120,7 @@ module.exports.controller = function (app) {
         //order: create genome, get its id, add all refs from file, link them to genome by id
 
         var description = req.body.description;
-        var buildVersion = req.body.buildVersion;
+        var name = req.body.name;
         var meta = req.body.meta;
 
         var username = req.param("username").toLowerCase();
@@ -126,7 +139,7 @@ module.exports.controller = function (app) {
 
                 var file = req.files.file;
 
-                if (org && description && buildVersion && meta && file) {
+                if (org && description && name && meta && file) {
                     if (err) {
                         return Util.renderError(res, err);
                     }
@@ -135,7 +148,7 @@ module.exports.controller = function (app) {
                     var genome = new Genome({
                         organism: org._id,
                         description: description,
-                        buildVersion: buildVersion,
+                        name: name,
                         meta: meta
                     });
 
@@ -170,39 +183,40 @@ module.exports.controller = function (app) {
         return res.render('genomes/show');
     });
 
-    //app.get('/api/genome/:id', function (req, res) {
-    //
-    //    var id = req.param("id");
-    //    var chr = req.query.chr;
-    //    var min = req.query.min;
-    //    var max = req.query.max;
-    //
-    //    Reference.find(
-    //        {
-    //            genome: id, name: chr
-    //            //, start: {$gt: min}, end: {$lt: max }
-    //        },
-    //        function (err, genome) {
-    //            if (err) {
-    //                return console.log('error', err);
-    //            } else {
-    //                //console.log(genome);
-    //                console.log('FOUND:', genome.length);
-    //                console.log(genome);
-    //                if (genome && genome.length > 0) {
-    //                    var g = genome[0];
-    //                    var seq = g.sequence.substring(min, max);
-    //                    console.log(seq);
-    //                    return res.send(seq);
-    //                } else {
-    //                    return res.send();
-    //                }
-    //            }
-    //        });
-    //
-    //
-    //    console.log('get reference track');
-    //    //res.send();
-    //});
+//app.get('/api/genome/:id', function (req, res) {
+//
+//    var id = req.param("id");
+//    var chr = req.query.chr;
+//    var min = req.query.min;
+//    var max = req.query.max;
+//
+//    Reference.find(
+//        {
+//            genome: id, name: chr
+//            //, start: {$gt: min}, end: {$lt: max }
+//        },
+//        function (err, genome) {
+//            if (err) {
+//                return console.log('error', err);
+//            } else {
+//                //console.log(genome);
+//                console.log('FOUND:', genome.length);
+//                console.log(genome);
+//                if (genome && genome.length > 0) {
+//                    var g = genome[0];
+//                    var seq = g.sequence.substring(min, max);
+//                    console.log(seq);
+//                    return res.send(seq);
+//                } else {
+//                    return res.send();
+//                }
+//            }
+//        });
+//
+//
+//    console.log('get reference track');
+//    //res.send();
+//});
 
-};
+}
+;

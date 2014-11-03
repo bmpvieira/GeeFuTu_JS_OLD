@@ -1,3 +1,24 @@
 <% include ../head %>
 
+<div class="container pt">
+
+    <h2>
+        <a href="/<%- user.username %>"><%- user.username %></a>
+        /
+        <a href="/<%- user.username %>/<%- organism.localName %>"><%- organism.localName %></a>
+        /
+        <a href="/<%- user.username %>/<%- organism.localName %>/<%-genome.name%>"><%- genome.name %></a>
+
+    </h2>
+
+
+    <h3>Experiments</h3>
+    <a href="/<%- user.username %>/<%- organism.localName %>/<%- genome.name %>/experiments/add" class="btn btn-default">Add Experiment</a>
+
+    <% experiments.forEach(function(experiment){ %>
+    <h4><a href="/<%- username %>/<%- organism.localName %>/<%- genome.name %>"><%- genome.name %></a></h4>
+    <% }); %>
+
+</div>
+
 <% include ../foot %>

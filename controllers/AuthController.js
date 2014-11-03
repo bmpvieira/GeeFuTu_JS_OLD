@@ -172,7 +172,7 @@ module.exports.controller = function (app) {
             User.canHaveUsername(username, function (err, canHaveUsername) {
 
                 if (err) {
-                    return res.render('error', {message: err});
+                    return Util.renderError(res, err);
                 }
 
                 if (canHaveUsername) {
@@ -180,11 +180,11 @@ module.exports.controller = function (app) {
                     User.emailAddressInUse(email, function (err, emailAddressInUse) {
 
                         if (err) {
-                            return res.render('error', {message: err});
+                            return Util.renderError(res, err);
                         }
 
                         if (emailAddressInUse) {
-                            return res.render('error', {message: 'email address is used by another user.'});
+                            return Util.renderError(res, 'email address is used by another user.');
                         }
 
                         var user = new User({
@@ -195,17 +195,19 @@ module.exports.controller = function (app) {
 
                         user.save(function (err, r) {
                             if (err) {
-                                return res.render('error', {message: err});
+                                return Util.renderError(res, err);
                             }
+//                            USER CREATED OK
+                            Util.flashSuccess(req, 'User has been created, please sign in');
                             return res.redirect('/signin');
                         });
                     });
                 } else {
-                    return res.render('error', {message: 'username is already in use.'});
+                    return Util.renderError(res, 'username is already in use.');
                 }
             });
         } else {
-            return res.render('error', {message: 'password + confirm password do not match'});
+            return Util.renderError(res, 'password + confirm password do not match');
         }
     });
 

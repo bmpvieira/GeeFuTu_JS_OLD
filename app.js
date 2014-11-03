@@ -52,7 +52,7 @@ var getConfig = function (done) {
  * Generates a new secret.
  * @returns {string}
  */
-var genSecret = function(){
+var genSecret = function () {
     var secret = "", rand;
     for (var i = 0; i < 36; i++) {
         rand = Math.floor(Math.random() * 15);
@@ -111,9 +111,13 @@ var setupMiddleware = function (done) {
     var flashes = function (req, res, next) {
         var info = req.flash('info');
         var error = req.flash('error');
+        var success = req.flash('success');
 
         if (info.length > 0) {
             res.locals.info = info;
+        }
+        if (success.length > 0) {
+            res.locals.success = success;
         }
         if (error.length > 0) {
             res.locals.error = error;
@@ -197,9 +201,9 @@ var startApp = function (done) {
  * Sets up Socket.io actions.
  * @param done
  */
-var initSocketIO = function(done){
+var initSocketIO = function (done) {
 
-    io.on('connection', function(socket){
+    io.on('connection', function (socket) {
         console.log('a user connected');
     });
     done();

@@ -18,7 +18,7 @@
         <tbody>
         <% genomes.forEach(function(genome){ %>
         <tr>
-            <td><%- genome.buildVersion %></td>
+            <td><a href="<%- user.username %>/<%- organism.localName %>/<%- genome.name %>"><%- genome.name %></a></td>
             <td><%- genome.description %></td>
         </tr>
         <% }); %>

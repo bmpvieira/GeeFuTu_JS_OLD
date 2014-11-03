@@ -28,12 +28,6 @@
 
             <ul class="nav navbar-nav">
                 <% if(locals.userName){ %>
-                <!--<li><a href="/organisms">Organisms</a></li>-->
-                <!--<li><a href="/genomes">Genome Builds</a></li>-->
-                <!--<li><a href="/experiments">Experiments</a></li>-->
-                <!--<li><a href="/features">Features</a></li>-->
-
-                <!--<li><a href="/tools">Tools</a></li>-->
                 <% } else { %>
                 <li><a href="/us">About Us</a></li>
                 <% } %>
@@ -42,7 +36,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <% if(locals.userName){ %>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%- locals.userName %> <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%- locals.userName %> <span
+                                class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>
@@ -63,6 +58,14 @@
 
     <% if(locals.info){ locals.info.forEach(function(flash, index) { %>
     <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                    class="sr-only">Close</span></button>
+        <p><%- flash %></p>
+    </div>
+    <% })} %>
+
+    <% if(locals.success){ locals.success.forEach(function(flash, index) { %>
+    <div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
                     class="sr-only">Close</span></button>
         <p><%- flash %></p>

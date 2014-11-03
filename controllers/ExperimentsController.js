@@ -8,14 +8,10 @@ var Util = require('../lib/util');
 module.exports.controller = function (app) {
 
     app.get('/:username/:organism/experiments', function (req, res) {
-
-        //var username = req.param("username").toLowerCase();
-        //var organism = req.param("organism").toLowerCase();
-
         res.send('TODO');
     });
 
-    app.get('/:username/:organism/experiments/add', AuthController.isAuthenticated, function (req, res) {
+    app.get('/:username/:organism/:genome/experiments/add', AuthController.isAuthenticated, function (req, res) {
         Genome.findAll(function (err, gens) {
             if (err) {
                 return Util.renderError(res, err);
@@ -26,7 +22,7 @@ module.exports.controller = function (app) {
         });
     });
 
-    app.post('/:username/:organism/experiments/add', AuthController.isAuthenticated, function (req, res) {
+    app.post('/:username/:organism/:genome/experiments/add', AuthController.isAuthenticated, function (req, res) {
 
 
         var name = req.body.name;
@@ -58,7 +54,7 @@ module.exports.controller = function (app) {
         //TODO where to put this?
 
         experiment.processFile(experiment, function (err) {
-            if(err){
+            if (err) {
                 return Util.renderError(res, err);
             }
             return res.redirect('/experiments');

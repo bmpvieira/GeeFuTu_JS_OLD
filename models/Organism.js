@@ -52,7 +52,13 @@ organismSchema.statics.findByUser = function (user, cb) {
 
 organismSchema.methods.getGenomes = function (cb) {
     Genome.find({organism: this._id}).exec(cb);
-}
+};
+
+organismSchema.methods.getGenomeByName = function (name, cb) {
+    console.log('looking for', name);
+    Genome.findOne({organism: this._id, name: name}).exec(cb);
+
+};
 
 
 organismSchema.methods.canView = function (user, cb) {
