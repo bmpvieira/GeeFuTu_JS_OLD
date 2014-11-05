@@ -15,14 +15,6 @@ var util = require('./lib/util');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-var IndexController = require('./controllers/IndexController');
-var AuthController = require('./controllers/AuthController');
-var ExperimentsController = require('./controllers/ExperimentsController');
-var FeaturesController = require('./controllers/FeaturesController');
-var GenomesController = require('./controllers/GenomesController');
-var OrganismsController = require('./controllers/OrganismsController');
-var UserController = require('./controllers/UserController');
-
 var PORT = process.env.PORT || 8080;
 
 var inDevelopment = true;
@@ -133,16 +125,7 @@ var setupMiddleware = function (done) {
  * @param done
  */
 var loadRoutes = function (done) {
-    IndexController.controller(app);
-    AuthController.controller(app);
-
-    OrganismsController.controller(app);
-    GenomesController.controller(app);
-    ExperimentsController.controller(app);
-    FeaturesController.controller(app);
-
-
-    UserController.controller(app);
+    var routes = require('./routes').controller(app);
     done();
 };
 

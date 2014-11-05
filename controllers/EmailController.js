@@ -1,5 +1,5 @@
 var nodemailer = require('nodemailer');
-var utils = require('../lib/utils');
+var utils = require('../lib/util');
 
 module.exports.controller = function (app) {
 

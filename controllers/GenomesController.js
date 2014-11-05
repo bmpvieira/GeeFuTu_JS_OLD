@@ -8,83 +8,37 @@ var AuthController = require('./AuthController');
 var OrganismsController = require('./OrganismsController');
 var Util = require('../lib/util');
 
-/**
- *
- * @param app
- */
-module.exports.controller = function (app) {
+//    app.get('/:username/:organism/genomes', AuthController.canView, function (req, res) {
+//this.genomes = function(req, res){
+//
+//        var username = req.param("username").toLowerCase();
+//        var organism = req.param("organism").toLowerCase();
+//
+//        User.getUserByUsername(username, function (err, user) {
+//            if (err) {
+//                return Util.renderError(res, err);
+//            }
+//
+//            Organism.findByUserAndLocalName(user, organism, function (err, org) {
+//                if (err) {
+//                    return Util.renderError(res, err);
+//                }
+//                org.getGenomes(function (err, genomes) {
+//                    if (err) {
+//                        return Util.renderError(res, err);
+//                    }
+//                    res.render('genomes/index', {
+//                        organism: org,
+//                        genomes: genomes,
+//                        user: user
+//                    });
+//                });
+//            });
+//        });
+//    };
 
-    app.get('/:username/:organism/genomes', AuthController.canView, function (req, res) {
-
-        var username = req.param("username").toLowerCase();
-        var organism = req.param("organism").toLowerCase();
-
-        User.getUserByUsername(username, function (err, user) {
-            if (err) {
-                return Util.renderError(res, err);
-            }
-
-            Organism.findByUserAndLocalName(user, organism, function (err, org) {
-                if (err) {
-                    return Util.renderError(res, err);
-                }
-                org.getGenomes(function (err, genomes) {
-                    if (err) {
-                        return Util.renderError(res, err);
-                    }
-                    res.render('genomes/index', {
-                        organism: org,
-                        genomes: genomes,
-                        user: user
-                    });
-                });
-            });
-        });
-    });
-
-    app.get('/:username/:organism/:genome', AuthController.canView, function (req, res) {
-        var username = req.param("username").toLowerCase();
-        var organism = req.param("organism").toLowerCase();
-        var genomeName = req.param("genome").toLowerCase();
-
-        User.getUserByUsername(username, function (err, user) {
-            if (err) {
-                return Util.renderError(res, err);
-            }
-
-            if (!user) {
-                return Util.renderError(res, 'user does not exist');
-            }
-
-            Organism.findByUserAndLocalName(user, organism, function (err, org) {
-                if (err) {
-                    return Util.renderError(res, err);
-                }
-
-                org.getGenomeByName(genomeName, function (err, genome) {
-                    if (err) {
-                        return Util.renderError(res, err);
-                    }
-
-                    genome.getExperiments(function (err, experiments) {
-                        if (err) {
-                            return Util.renderError(res, err);
-                        }
-                        console.log(genome);
-                        res.render('genomes/show', {
-                            organism: org,
-                            genome: genome,
-                            user: user,
-                            experiments: experiments
-                        });
-                    });
-                });
-            });
-        });
-    });
-
-    app.get('/:username/:organism/genomes/add', AuthController.isAuthenticated, function (req, res) {
-
+//    app.get('/:username/:organism/genomes/add', AuthController.isAuthenticated, function (req, res) {
+this.add = function(req, res){
         var username = req.param("username").toLowerCase();
         var organism = req.param("organism").toLowerCase();
 
@@ -101,8 +55,6 @@ module.exports.controller = function (app) {
                 if (err) {
                     return Util.renderError(res, err);
                 }
-
-                console.log(org);
 
                 return res.render('genomes/new', {
                     organism: org,
@@ -113,10 +65,10 @@ module.exports.controller = function (app) {
 
         });
 
-    });
+    };
 
-    app.post('/:username/:organism/genomes/add', [AuthController.isAuthenticated, AuthController.canEdit], function (req, res) {
-
+//    app.post('/:username/:organism/genomes/add', [AuthController.isAuthenticated, AuthController.canEdit], function (req, res) {
+this.addPost = function(req, res){
         //order: create genome, get its id, add all refs from file, link them to genome by id
 
         var description = req.body.description;
@@ -177,11 +129,51 @@ module.exports.controller = function (app) {
                 }
             });
         });
-    });
+    };
 
-    app.get('/:username/:organism/genomes/show', function (req, res) {
-        return res.render('genomes/show');
-    });
+//    app.get('/:username/:organism/genomes/show', function (req, res) {
+//this.show = function(req, res){
+//        return res.render('genomes/show');
+//    };
 
+//    app.get('/:username/:organism/:genome', AuthController.canView, function (req, res) {
+this.show = function(req, res){
+        var username = req.param("username").toLowerCase();
+        var organism = req.param("organism").toLowerCase();
+        var genomeName = req.param("genome").toLowerCase();
 
-};
+        User.getUserByUsername(username, function (err, user) {
+            if (err) {
+                return Util.renderError(res, err);
+            }
+
+            if (!user) {
+                return Util.renderError(res, 'user does not exist');
+            }
+
+            Organism.findByUserAndLocalName(user, organism, function (err, org) {
+                if (err) {
+                    return Util.renderError(res, err);
+                }
+
+                org.getGenomeByName(genomeName, function (err, genome) {
+                    if (err) {
+                        return Util.renderError(res, err);
+                    }
+
+                    genome.getExperiments(function (err, experiments) {
+                        if (err) {
+                            return Util.renderError(res, err);
+                        }
+                        res.render('genomes/show', {
+                            organism: org,
+                            genome: genome,
+                            user: user,
+                            experiments: experiments
+                        });
+                    });
+                });
+            });
+        });
+    };
+
