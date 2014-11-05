@@ -135,10 +135,13 @@ var setupMiddleware = function (done) {
 var loadRoutes = function (done) {
     IndexController.controller(app);
     AuthController.controller(app);
+
+    OrganismsController.controller(app);
+    GenomesController.controller(app);
     ExperimentsController.controller(app);
     FeaturesController.controller(app);
-    GenomesController.controller(app);
-    OrganismsController.controller(app);
+
+
     UserController.controller(app);
     done();
 };

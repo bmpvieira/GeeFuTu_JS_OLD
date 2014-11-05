@@ -1,5 +1,7 @@
 var Organism = require('../models/Organism');
 var User = require('../models/User');
+var Util = require('../lib/util');
+
 module.exports.controller = function (app) {
 
     app.get('/', function (req, res) {
@@ -9,11 +11,12 @@ module.exports.controller = function (app) {
             //dash
             User.getUserByUsername(req.user.username, function (err, user) {
                 if (err) {
-                    return res.render('error', {message: err});
+                    return Util.renderError(res, err);
+
                 }
                 Organism.findByUser(user, function (err, orgs) {
                     if (err) {
-                        return res.render('error', {message: err});
+                        return Util.renderError(res, err);
                     }
                     res.render('dash/index', {user: user, organisms: orgs});
                 });

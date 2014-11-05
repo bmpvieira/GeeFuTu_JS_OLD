@@ -1,4 +1,5 @@
 var User = require('../models/User');
+var Util = require('../lib/util');
 
 module.exports.controller = function (app) {
 
@@ -8,11 +9,11 @@ module.exports.controller = function (app) {
         User.getUserByUsername(username, function (err, user) {
 
             if (err) {
-                return res.render('error', {message: err});
+                Util.renderError(res, err);
             }
 
             if (!user) {
-                return res.render('error', {message: 'user does not exist'});
+                return Util.renderError(res, 'user does not exist');
             }
 
             //user.getGravatarUrl(function (url) {
