@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/wookoouk/GeeFuTu/badge.png?branch=master)](https://coveralls.io/r/wookoouk/GeeFuTu?branch=master)
 [![Dependency Status](https://gemnasium.com/wookoouk/GeeFuTu.svg)](https://gemnasium.com/wookoouk/GeeFuTu)
 [![Code Climate](https://codeclimate.com/github/wookoouk/GeeFuTu/badges/gpa.svg)](https://codeclimate.com/github/wookoouk/GeeFuTu)
-[![MIT Licence](http://img.shields.io/:license-mit-blue.svg)]()
+[![MIT Licence](http://img.shields.io/:license-mit-blue.svg)](https://github.com/wookoouk/GeeFuTu/blob/master/LICENCE)
 <img align="right" height="200" src="https://raw.githubusercontent.com/wookoouk/GeeFuTu/master/public/GeeFuTu.png">
 
 GeeFuTu is a platform for sharing and updating genomics data, projects can be private with per experiment permissions or public for anybody to view and edit.
