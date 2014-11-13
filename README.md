@@ -12,7 +12,6 @@ GeeFuTu is available for anyone to install from source but will also be a servic
 GeeFuTu is still heavily under development, please check the Road Map for list of completed and upcoming features.
 
 ##BETA
-
 ### Private BETA 1/11/14 - 20/11/14
 > All data will be removed at the end of this beta
 
@@ -20,9 +19,7 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 > All data will be removed at the end of this beta
 
 ## Road Map
-
 ### Dec 2014
-
 * Hosted service available.
 * Editing inside BioDalliance.
 * Private projects.
@@ -37,7 +34,6 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 * Cross OS/Browser support (Safari, Chrome, Firefox, Opera, IE9 and mobile browsers (Android, Chrome Mobile, iOS Safari).
 
 ### March 2015
-
 * Full test coverage.
 * Multiple Alignment Format (HAL?).
 * Remote logging.
@@ -45,7 +41,6 @@ GeeFuTu is still heavily under development, please check the Road Map for list o
 * Full Documentation.
 
 ## Install
-
 ```sh
 $ npm install
 $ bower install
@@ -55,7 +50,6 @@ $ cd public/components/dalliance && npm install && gulp
 ```
 
 ## Start
-
 For development I suggest using nodemon, this will auto reload on changes.
 ```sh
 nodemon app
@@ -67,7 +61,12 @@ node app
 ```
 
 ## Contributors
-
 Martin Page <wookoouk@gmail.com>
 Shyam Rallapalli <Ghanasyam.Rallapalli@tsl.ac.uk>
 Dan Maclean <Dan.MacLean@tsl.ac.uk>
+
+## Docs
+Generated docs can be found in /docs, to updates these run    
+```sh
+dox-foundation --target docs --ignore node_modules,public/conponents
+```
