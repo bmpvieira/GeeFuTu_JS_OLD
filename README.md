@@ -68,5 +68,5 @@ Dan Maclean <Dan.MacLean@tsl.ac.uk>
 ## Docs
 Generated docs can be found in /docs, to updates these run    
 ```sh
-dox-foundation --target docs --ignore node_modules,public/conponents
+dox-foundation --target docs --ignore node_modules,public/components --source ./
 ```
