@@ -38,7 +38,6 @@
     "gulp": "^3.8.9",
     "gulp-concat": "^2.4.1",
     "gulp-coveralls": "^0.1.2",
-    "gulp-jsdoc": "^0.1.4",
     "gulp-jshint": "^1.8.5",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^1.2.2",
