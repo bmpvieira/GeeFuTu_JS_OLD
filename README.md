@@ -11,13 +11,6 @@ GeeFuTu is available for anyone to install from source but will also be a servic
 
 GeeFuTu is still heavily under development, please check the Road Map for list of completed and upcoming features.
 
-##BETA
-### Private BETA 1/11/14 - 20/11/14
-> All data will be removed at the end of this beta
-
-### Public BETA 20/11/14 - 20/11/14
-> All data will be removed at the end of this beta
-
 ## Road Map
 ### Dec 2014
 * Hosted service available.
