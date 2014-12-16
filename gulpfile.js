@@ -27,3 +27,6 @@ gulp.task('watch', function () {
 
 // Default Task
 gulp.task('default', ['sass']);
+
+// Run on checkout
+gulp.task('setup', ['sass', 'config-file']);

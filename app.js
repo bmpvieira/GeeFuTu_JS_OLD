@@ -91,14 +91,14 @@ var setupMiddleware = function (done) {
     app.set('view engine', 'ejs');
     app.set('views', __dirname + '/views');
 
-    var appendLocalsToUseInViews = function (req, res, next) {
-        if (req.user != null && req.user.username != null) {
-            res.locals.userName = req.user.username;
-
-        }
-        next(null, req, res);
-    };
-    app.use(appendLocalsToUseInViews);
+//    var appendLocalsToUseInViews = function (req, res, next) {
+//        if (req.user != null && req.user.username != null) {
+//            res.locals.userName = req.user.username;
+//
+//        }
+//        next(null, req, res);
+//    };
+//    app.use(appendLocalsToUseInViews);
 
     var flashes = function (req, res, next) {
         var info = req.flash('info');
