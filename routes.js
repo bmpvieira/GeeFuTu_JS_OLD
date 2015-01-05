@@ -24,7 +24,7 @@ module.exports.controller = function (app) {
         .get(AuthController.join)
         .post(AuthController.joinPost);
     app.route('/signout')
-        .get(AuthController.signout)
+        .get(AuthController.signout);
 
     app.route('/:username')
         .get(UserController.user);
@@ -51,7 +51,4 @@ module.exports.controller = function (app) {
         .post(ExperimentsController.addPost);
     app.route('/:username/:organism/:experiment')
         .get(ExperimentsController.show);
-
-
-
 };

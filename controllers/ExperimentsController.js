@@ -35,6 +35,14 @@ this.addPost = function (req, res) {
     var findParents = req.body.findParents;
     var type = req.body.type;
 
+    console.log(type);
+
+    if (type == 'GFF3') {
+        return res.send('GOOD ' + type);
+    } else {
+        return res.send('BAD' + type);
+    }
+
     var experiment = new Experiment({
         name: name,
         description: description,
@@ -86,7 +94,7 @@ this.addPost = function (req, res) {
 };
 
 //app.get('/:username/:organism/:experiment', function (req, res) {
-this.show = function(req, res){
+this.show = function (req, res) {
     var id = req.param("id");
     //var genome = null;
 

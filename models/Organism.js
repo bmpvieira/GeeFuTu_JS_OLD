@@ -55,7 +55,7 @@ organismSchema.methods.getGenomes = function (cb) {
 };
 
 organismSchema.methods.getGenomeByName = function (name, cb) {
-    console.log('looking for', name);
+//    console.log('looking for', name);
     Genome.findOne({organism: this._id, name: name}).exec(cb);
 
 };

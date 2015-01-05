@@ -4,7 +4,9 @@
 
     <h2>New Experiment</h2>
 
-    <form role="form" action="/experiments/add" method="post" enctype="multipart/form-data">
+    <!--/:username/:organism/add-->
+
+    <form role="form" action="/<%- user.username %> / <%- organism %> / <%- genome %> / add" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
